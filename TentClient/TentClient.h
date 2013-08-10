@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tent. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface TentClient : NSObject
 
