@@ -9,22 +9,17 @@
 /* Begin PBXBuildFile section */
 		0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */; };
 		168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A89620D27448589B6CC4AC /* libPods-ios.a */; };
-		88B3BA2717B695A5008FD26B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2617B695A5008FD26B /* Cocoa.framework */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
-		88B3BA3C17B695A5008FD26B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA3B17B695A5008FD26B /* XCTest.framework */; };
-		88B3BA3D17B695A5008FD26B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2617B695A5008FD26B /* Cocoa.framework */; };
 		88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2317B695A5008FD26B /* TentClient.framework */; };
 		88B3BA4617B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA4417B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA4817B695A5008FD26B /* TentClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA4717B695A5008FD26B /* TentClientTests.m */; };
-		88B3BA5717B69B1D008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5617B69B1D008FD26B /* Foundation.framework */; };
-		88B3BA6417B69B1D008FD26B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA3B17B695A5008FD26B /* XCTest.framework */; };
-		88B3BA6517B69B1E008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5617B69B1D008FD26B /* Foundation.framework */; };
-		88B3BA6717B69B1E008FD26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA6617B69B1E008FD26B /* UIKit.framework */; };
 		88B3BA6A17B69B1E008FD26B /* libTentClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5517B69B1D008FD26B /* libTentClient.a */; };
 		88B3BA7017B69B1E008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA6E17B69B1E008FD26B /* InfoPlist.strings */; };
 		88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
 		88B3BA7A17B69BB9008FD26B /* TentClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA4717B695A5008FD26B /* TentClientTests.m */; };
+		88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7B17B6A6F7008FD26B /* Foundation.framework */; };
+		88B3BA7E17B6A6FF008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7D17B6A6FF008FD26B /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,27 +56,22 @@
 		12A89620D27448589B6CC4AC /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
 		88B3BA2317B695A5008FD26B /* TentClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TentClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88B3BA2617B695A5008FD26B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		88B3BA2917B695A5008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		88B3BA2A17B695A5008FD26B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		88B3BA2B17B695A5008FD26B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		88B3BA2E17B695A5008FD26B /* TentClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TentClient-Info.plist"; sourceTree = "<group>"; };
 		88B3BA3017B695A5008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88B3BA3217B695A5008FD26B /* TentClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TentClient-Prefix.pch"; sourceTree = "<group>"; };
 		88B3BA3317B695A5008FD26B /* TentClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TentClient.h; sourceTree = "<group>"; };
 		88B3BA3417B695A5008FD26B /* TentClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TentClient.m; sourceTree = "<group>"; };
 		88B3BA3A17B695A5008FD26B /* TentClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TentClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		88B3BA3B17B695A5008FD26B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		88B3BA4317B695A5008FD26B /* TentClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TentClientTests-Info.plist"; sourceTree = "<group>"; };
 		88B3BA4517B695A5008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88B3BA4717B695A5008FD26B /* TentClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TentClientTests.m; sourceTree = "<group>"; };
 		88B3BA5517B69B1D008FD26B /* libTentClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTentClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		88B3BA5617B69B1D008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88B3BA5A17B69B1D008FD26B /* libtentclient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libtentclient-Prefix.pch"; sourceTree = "<group>"; };
 		88B3BA6317B69B1D008FD26B /* libtentclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libtentclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		88B3BA6617B69B1E008FD26B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		88B3BA6D17B69B1E008FD26B /* libtentclientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libtentclientTests-Info.plist"; sourceTree = "<group>"; };
 		88B3BA6F17B69B1E008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		88B3BA7B17B6A6F7008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88B3BA7D17B6A6FF008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B3BA2717B695A5008FD26B /* Cocoa.framework in Frameworks */,
+				88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */,
 				0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,9 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B3BA3D17B695A5008FD26B /* Cocoa.framework in Frameworks */,
 				88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */,
-				88B3BA3C17B695A5008FD26B /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B3BA5717B69B1D008FD26B /* Foundation.framework in Frameworks */,
+				88B3BA7E17B6A6FF008FD26B /* Foundation.framework in Frameworks */,
 				168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -118,10 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B3BA6417B69B1D008FD26B /* XCTest.framework in Frameworks */,
 				88B3BA6A17B69B1E008FD26B /* libTentClient.a in Frameworks */,
-				88B3BA6717B69B1E008FD26B /* UIKit.framework in Frameworks */,
-				88B3BA6517B69B1E008FD26B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,25 +141,12 @@
 		88B3BA2517B695A5008FD26B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88B3BA2617B695A5008FD26B /* Cocoa.framework */,
-				88B3BA3B17B695A5008FD26B /* XCTest.framework */,
-				88B3BA5617B69B1D008FD26B /* Foundation.framework */,
-				88B3BA6617B69B1E008FD26B /* UIKit.framework */,
-				88B3BA2817B695A5008FD26B /* Other Frameworks */,
+				88B3BA7D17B6A6FF008FD26B /* Foundation.framework */,
+				88B3BA7B17B6A6F7008FD26B /* Foundation.framework */,
 				12A89620D27448589B6CC4AC /* libPods-ios.a */,
 				C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		88B3BA2817B695A5008FD26B /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				88B3BA2917B695A5008FD26B /* Foundation.framework */,
-				88B3BA2A17B695A5008FD26B /* CoreData.framework */,
-				88B3BA2B17B695A5008FD26B /* AppKit.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		88B3BA2C17B695A5008FD26B /* TentClient */ = {
