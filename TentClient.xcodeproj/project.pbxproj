@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */; };
 		168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A89620D27448589B6CC4AC /* libPods-ios.a */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
@@ -21,6 +20,7 @@
 		88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7B17B6A6F7008FD26B /* Foundation.framework */; };
 		88B3BA7E17B6A6FF008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7D17B6A6FF008FD26B /* Foundation.framework */; };
 		88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 88B3BA3317B695A5008FD26B /* TentClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892054395B7432990444A7F /* libPods-osx_10_9.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +55,8 @@
 /* Begin PBXFileReference section */
 		109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx_10_8.xcconfig"; path = "Pods/Pods-osx_10_8.xcconfig"; sourceTree = SOURCE_ROOT; };
 		12A89620D27448589B6CC4AC /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2892054395B7432990444A7F /* libPods-osx_10_9.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_9.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E48D351B7EE416184ACCD98 /* Pods-osx_10_9.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx_10_9.xcconfig"; path = "Pods/Pods-osx_10_9.xcconfig"; sourceTree = SOURCE_ROOT; };
 		3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
 		88B3BA2317B695A5008FD26B /* TentClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TentClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B3BA2E17B695A5008FD26B /* TentClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TentClient-Info.plist"; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */,
-				0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */,
+				D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,7 @@
 				88B3BA2417B695A5008FD26B /* Products */,
 				3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */,
 				109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */,
+				2E48D351B7EE416184ACCD98 /* Pods-osx_10_9.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +149,7 @@
 				88B3BA7B17B6A6F7008FD26B /* Foundation.framework */,
 				12A89620D27448589B6CC4AC /* libPods-ios.a */,
 				C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */,
+				2892054395B7432990444A7F /* libPods-osx_10_9.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -402,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-osx_10_8-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-osx_10_9-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91F700B0DA694AE495369DD9 /* Check Pods Manifest.lock */ = {
@@ -545,7 +549,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -578,14 +583,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		88B3BA4C17B695A5008FD26B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */;
+			baseConfigurationReference = 2E48D351B7EE416184ACCD98 /* Pods-osx_10_9.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -610,7 +616,7 @@
 		};
 		88B3BA4D17B695A5008FD26B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */;
+			baseConfigurationReference = 2E48D351B7EE416184ACCD98 /* Pods-osx_10_9.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

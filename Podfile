@@ -11,8 +11,8 @@ target :ios do
   common_pods
 end
 
-target :osx_10_8 do
-  platform :osx, '10.8'
+target :osx_10_9 do
+  platform :osx, '10.9'
   link_with 'TentClient'
 
   common_pods
