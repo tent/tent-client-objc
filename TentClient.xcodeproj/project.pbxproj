@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */; };
+		168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A89620D27448589B6CC4AC /* libPods-ios.a */; };
 		88B3BA2717B695A5008FD26B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2617B695A5008FD26B /* Cocoa.framework */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
@@ -55,6 +57,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx_10_8.xcconfig"; path = "Pods/Pods-osx_10_8.xcconfig"; sourceTree = SOURCE_ROOT; };
+		12A89620D27448589B6CC4AC /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
 		88B3BA2317B695A5008FD26B /* TentClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TentClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B3BA2617B695A5008FD26B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		88B3BA2917B695A5008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -77,6 +82,7 @@
 		88B3BA6617B69B1E008FD26B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		88B3BA6D17B69B1E008FD26B /* libtentclientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libtentclientTests-Info.plist"; sourceTree = "<group>"; };
 		88B3BA6F17B69B1E008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BA2717B695A5008FD26B /* Cocoa.framework in Frameworks */,
+				0EBD02BE5594406FAB88D796 /* libPods-osx_10_8.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BA5717B69B1D008FD26B /* Foundation.framework in Frameworks */,
+				168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +137,8 @@
 				88B3BA6B17B69B1E008FD26B /* libtentclientTests */,
 				88B3BA2517B695A5008FD26B /* Frameworks */,
 				88B3BA2417B695A5008FD26B /* Products */,
+				3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */,
+				109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +161,8 @@
 				88B3BA5617B69B1D008FD26B /* Foundation.framework */,
 				88B3BA6617B69B1E008FD26B /* UIKit.framework */,
 				88B3BA2817B695A5008FD26B /* Other Frameworks */,
+				12A89620D27448589B6CC4AC /* libPods-ios.a */,
+				C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,10 +265,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88B3BA4B17B695A5008FD26B /* Build configuration list for PBXNativeTarget "TentClient" */;
 			buildPhases = (
+				5348045832C5491A8EB7D1A4 /* Check Pods Manifest.lock */,
 				88B3BA1E17B695A5008FD26B /* Sources */,
 				88B3BA1F17B695A5008FD26B /* Frameworks */,
 				88B3BA2017B695A5008FD26B /* Headers */,
 				88B3BA2117B695A5008FD26B /* Resources */,
+				6E31DCD875B8407D836B8D1F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,9 +303,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88B3BA7717B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclient" */;
 			buildPhases = (
+				91F700B0DA694AE495369DD9 /* Check Pods Manifest.lock */,
 				88B3BA5117B69B1D008FD26B /* Sources */,
 				88B3BA5217B69B1D008FD26B /* Frameworks */,
 				88B3BA5317B69B1D008FD26B /* CopyFiles */,
+				FB0544B4305D4108B22F05CE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,6 +399,69 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5348045832C5491A8EB7D1A4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6E31DCD875B8407D836B8D1F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-osx_10_8-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91F700B0DA694AE495369DD9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB0544B4305D4108B22F05CE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		88B3BA1E17B695A5008FD26B /* Sources */ = {
@@ -532,6 +611,7 @@
 		};
 		88B3BA4C17B695A5008FD26B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -540,6 +620,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TentClient/TentClient-Prefix.pch";
 				INFOPLIST_FILE = "TentClient/TentClient-Info.plist";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wno-unused-macros",
@@ -555,6 +636,7 @@
 		};
 		88B3BA4D17B695A5008FD26B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 109DED3194394D539ADDB183 /* Pods-osx_10_8.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -563,6 +645,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TentClient/TentClient-Prefix.pch";
 				INFOPLIST_FILE = "TentClient/TentClient-Info.plist";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wno-unused-macros",
@@ -618,6 +701,7 @@
 		};
 		88B3BA7317B69B1E008FD26B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/libtentclient.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -628,7 +712,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
-					"-ObjC",
+					"$(inherited)",
 					"-all_load",
 				);
 				PRODUCT_NAME = TentClient;
@@ -648,13 +732,14 @@
 		};
 		88B3BA7417B69B1E008FD26B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/libtentclient.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "libtentclient/libtentclient-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = (
-					"-ObjC",
+					"$(inherited)",
 					"-all_load",
 				);
 				PRODUCT_NAME = TentClient;
@@ -761,6 +846,7 @@
 				88B3BA7417B69B1E008FD26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88B3BA7817B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclientTests" */ = {
 			isa = XCConfigurationList;
@@ -769,6 +855,7 @@
 				88B3BA7617B69B1E008FD26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

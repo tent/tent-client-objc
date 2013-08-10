@@ -1,0 +1,14 @@
+PODS:
+  - Hawk (0.1.4)
+
+DEPENDENCIES:
+  - Hawk (from `https://raw.github.com/tent/hawk-objc/master/Hawk.podspec`)
+
+EXTERNAL SOURCES:
+  Hawk:
+    :podspec: https://raw.github.com/tent/hawk-objc/master/Hawk.podspec
+
+SPEC CHECKSUMS:
+  Hawk: 7f7a879fd088aa79ea3bbde8137d38182a9cc0d7
+
+COCOAPODS: 0.22.2
