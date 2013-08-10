@@ -20,6 +20,7 @@
 		88B3BA7A17B69BB9008FD26B /* TentClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA4717B695A5008FD26B /* TentClientTests.m */; };
 		88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7B17B6A6F7008FD26B /* Foundation.framework */; };
 		88B3BA7E17B6A6FF008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7D17B6A6FF008FD26B /* Foundation.framework */; };
+		88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 88B3BA3317B695A5008FD26B /* TentClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,6 +228,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
