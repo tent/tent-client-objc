@@ -541,6 +541,14 @@
 				GCC_PREFIX_HEADER = "TentClient/TentClient-Prefix.pch";
 				INFOPLIST_FILE = "TentClient/TentClient-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wno-unused-macros",
+					"-Wno-arc-repeated-use-of-weak",
+					"-Wno-direct-ivar-access",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-pedantic",
+					"-Weverything",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -556,6 +564,14 @@
 				GCC_PREFIX_HEADER = "TentClient/TentClient-Prefix.pch";
 				INFOPLIST_FILE = "TentClient/TentClient-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = (
+					"-Wno-unused-macros",
+					"-Wno-arc-repeated-use-of-weak",
+					"-Wno-direct-ivar-access",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-pedantic",
+					"-Weverything",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -619,6 +635,14 @@
 				PUBLIC_HEADERS_FOLDER_PATH = include;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wno-unused-macros",
+					"-Wno-arc-repeated-use-of-weak",
+					"-Wno-direct-ivar-access",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-pedantic",
+					"-Weverything",
+				);
 			};
 			name = Debug;
 		};
@@ -638,6 +662,14 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wno-unused-macros",
+					"-Wno-arc-repeated-use-of-weak",
+					"-Wno-direct-ivar-access",
+					"-Wno-objc-missing-property-synthesis",
+					"-Wno-pedantic",
+					"-Weverything",
+				);
 			};
 			name = Release;
 		};
