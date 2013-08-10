@@ -15,6 +15,14 @@
 		88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2317B695A5008FD26B /* TentClient.framework */; };
 		88B3BA4617B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA4417B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA4817B695A5008FD26B /* TentClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA4717B695A5008FD26B /* TentClientTests.m */; };
+		88B3BA5717B69B1D008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5617B69B1D008FD26B /* Foundation.framework */; };
+		88B3BA6417B69B1D008FD26B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA3B17B695A5008FD26B /* XCTest.framework */; };
+		88B3BA6517B69B1E008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5617B69B1D008FD26B /* Foundation.framework */; };
+		88B3BA6717B69B1E008FD26B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA6617B69B1E008FD26B /* UIKit.framework */; };
+		88B3BA6A17B69B1E008FD26B /* libTentClient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA5517B69B1D008FD26B /* libTentClient.a */; };
+		88B3BA7017B69B1E008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA6E17B69B1E008FD26B /* InfoPlist.strings */; };
+		88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
+		88B3BA7A17B69BB9008FD26B /* TentClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA4717B695A5008FD26B /* TentClientTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,7 +33,26 @@
 			remoteGlobalIDString = 88B3BA2217B695A5008FD26B;
 			remoteInfo = TentClient;
 		};
+		88B3BA6817B69B1E008FD26B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 88B3BA1A17B695A5008FD26B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88B3BA5417B69B1D008FD26B;
+			remoteInfo = libtentclient;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88B3BA5317B69B1D008FD26B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		88B3BA2317B695A5008FD26B /* TentClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TentClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +70,13 @@
 		88B3BA4317B695A5008FD26B /* TentClientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TentClientTests-Info.plist"; sourceTree = "<group>"; };
 		88B3BA4517B695A5008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88B3BA4717B695A5008FD26B /* TentClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TentClientTests.m; sourceTree = "<group>"; };
+		88B3BA5517B69B1D008FD26B /* libTentClient.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTentClient.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B3BA5617B69B1D008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88B3BA5A17B69B1D008FD26B /* libtentclient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libtentclient-Prefix.pch"; sourceTree = "<group>"; };
+		88B3BA6317B69B1D008FD26B /* libtentclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = libtentclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B3BA6617B69B1E008FD26B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		88B3BA6D17B69B1E008FD26B /* libtentclientTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libtentclientTests-Info.plist"; sourceTree = "<group>"; };
+		88B3BA6F17B69B1E008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +98,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88B3BA5217B69B1D008FD26B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B3BA5717B69B1D008FD26B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88B3BA6017B69B1D008FD26B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B3BA6417B69B1D008FD26B /* XCTest.framework in Frameworks */,
+				88B3BA6A17B69B1E008FD26B /* libTentClient.a in Frameworks */,
+				88B3BA6717B69B1E008FD26B /* UIKit.framework in Frameworks */,
+				88B3BA6517B69B1E008FD26B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -72,6 +125,8 @@
 			children = (
 				88B3BA2C17B695A5008FD26B /* TentClient */,
 				88B3BA4117B695A5008FD26B /* TentClientTests */,
+				88B3BA5817B69B1D008FD26B /* libtentclient */,
+				88B3BA6B17B69B1E008FD26B /* libtentclientTests */,
 				88B3BA2517B695A5008FD26B /* Frameworks */,
 				88B3BA2417B695A5008FD26B /* Products */,
 			);
@@ -82,6 +137,8 @@
 			children = (
 				88B3BA2317B695A5008FD26B /* TentClient.framework */,
 				88B3BA3A17B695A5008FD26B /* TentClientTests.xctest */,
+				88B3BA5517B69B1D008FD26B /* libTentClient.a */,
+				88B3BA6317B69B1D008FD26B /* libtentclientTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +148,8 @@
 			children = (
 				88B3BA2617B695A5008FD26B /* Cocoa.framework */,
 				88B3BA3B17B695A5008FD26B /* XCTest.framework */,
+				88B3BA5617B69B1D008FD26B /* Foundation.framework */,
+				88B3BA6617B69B1E008FD26B /* UIKit.framework */,
 				88B3BA2817B695A5008FD26B /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -144,6 +203,39 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		88B3BA5817B69B1D008FD26B /* libtentclient */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BA5917B69B1D008FD26B /* Supporting Files */,
+			);
+			path = libtentclient;
+			sourceTree = "<group>";
+		};
+		88B3BA5917B69B1D008FD26B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BA5A17B69B1D008FD26B /* libtentclient-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88B3BA6B17B69B1E008FD26B /* libtentclientTests */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BA6C17B69B1E008FD26B /* Supporting Files */,
+			);
+			path = libtentclientTests;
+			sourceTree = "<group>";
+		};
+		88B3BA6C17B69B1E008FD26B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				88B3BA6D17B69B1E008FD26B /* libtentclientTests-Info.plist */,
+				88B3BA6E17B69B1E008FD26B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -193,6 +285,41 @@
 			productReference = 88B3BA3A17B695A5008FD26B /* TentClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		88B3BA5417B69B1D008FD26B /* libtentclient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88B3BA7717B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclient" */;
+			buildPhases = (
+				88B3BA5117B69B1D008FD26B /* Sources */,
+				88B3BA5217B69B1D008FD26B /* Frameworks */,
+				88B3BA5317B69B1D008FD26B /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = libtentclient;
+			productName = libtentclient;
+			productReference = 88B3BA5517B69B1D008FD26B /* libTentClient.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		88B3BA6217B69B1D008FD26B /* libtentclientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88B3BA7817B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclientTests" */;
+			buildPhases = (
+				88B3BA5F17B69B1D008FD26B /* Sources */,
+				88B3BA6017B69B1D008FD26B /* Frameworks */,
+				88B3BA6117B69B1D008FD26B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				88B3BA6917B69B1E008FD26B /* PBXTargetDependency */,
+			);
+			name = libtentclientTests;
+			productName = libtentclientTests;
+			productReference = 88B3BA6317B69B1D008FD26B /* libtentclientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -203,6 +330,9 @@
 				ORGANIZATIONNAME = Tent;
 				TargetAttributes = {
 					88B3BA3917B695A5008FD26B = {
+						TestTargetID = 88B3BA2217B695A5008FD26B;
+					};
+					88B3BA6217B69B1D008FD26B = {
 						TestTargetID = 88B3BA2217B695A5008FD26B;
 					};
 				};
@@ -221,6 +351,8 @@
 			targets = (
 				88B3BA2217B695A5008FD26B /* TentClient */,
 				88B3BA3917B695A5008FD26B /* TentClientTests */,
+				88B3BA5417B69B1D008FD26B /* libtentclient */,
+				88B3BA6217B69B1D008FD26B /* libtentclientTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,6 +371,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BA4617B695A5008FD26B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88B3BA6117B69B1D008FD26B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B3BA7017B69B1E008FD26B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +401,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		88B3BA5117B69B1D008FD26B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		88B3BA5F17B69B1D008FD26B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B3BA7A17B69BB9008FD26B /* TentClientTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -268,6 +424,11 @@
 			isa = PBXTargetDependency;
 			target = 88B3BA2217B695A5008FD26B /* TentClient */;
 			targetProxy = 88B3BA3E17B695A5008FD26B /* PBXContainerItemProxy */;
+		};
+		88B3BA6917B69B1E008FD26B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88B3BA5417B69B1D008FD26B /* libtentclient */;
+			targetProxy = 88B3BA6817B69B1E008FD26B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -284,6 +445,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				88B3BA4517B695A5008FD26B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		88B3BA6E17B69B1E008FD26B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88B3BA6F17B69B1E008FD26B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -431,6 +600,98 @@
 			};
 			name = Release;
 		};
+		88B3BA7317B69B1E008FD26B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libtentclient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libtentclient/libtentclient-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = TentClient;
+				PUBLIC_HEADERS_FOLDER_PATH = include;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		88B3BA7417B69B1E008FD26B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/libtentclient.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libtentclient/libtentclient-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = TentClient;
+				PUBLIC_HEADERS_FOLDER_PATH = include;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88B3BA7517B69B1E008FD26B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libtentclient/libtentclient-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "libtentclientTests/libtentclientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		88B3BA7617B69B1E008FD26B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "libtentclient/libtentclient-Prefix.pch";
+				INFOPLIST_FILE = "libtentclientTests/libtentclientTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -450,12 +711,30 @@
 				88B3BA4D17B695A5008FD26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88B3BA4E17B695A5008FD26B /* Build configuration list for PBXNativeTarget "TentClientTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88B3BA4F17B695A5008FD26B /* Debug */,
 				88B3BA5017B695A5008FD26B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88B3BA7717B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88B3BA7317B69B1E008FD26B /* Debug */,
+				88B3BA7417B69B1E008FD26B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		88B3BA7817B69B1E008FD26B /* Build configuration list for PBXNativeTarget "libtentclientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88B3BA7517B69B1E008FD26B /* Debug */,
+				88B3BA7617B69B1E008FD26B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
