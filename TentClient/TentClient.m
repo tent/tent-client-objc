@@ -11,6 +11,7 @@
 #import "AFURLResponseSerialization.h"
 #import "HTTPLinkHeader.h"
 #import "HTMLLink.h"
+#import "NSJSONSerialization+ObjectCleanup.h"
 
 @implementation TentClient
 
