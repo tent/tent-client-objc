@@ -9,6 +9,7 @@
 #import "TentClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "HTTPLinkHeader.h"
+#import "HTMLLink.h"
 
 @implementation TentClient
 
@@ -21,6 +22,19 @@
 }
 
 - (void)performDiscovery {
+    [self performHEADDiscoveryWithSuccessBlock:^{
+        NSLog(@"TODO: fetch meta post: %@", [self.metaPostURL absoluteString]);
+    } failureBlock:^{
+        [self performGETDiscoveryWithSuccessBlock:^{
+            NSLog(@"Get Discovery: TODO: fetch meta post: %@", [self.metaPostURL absoluteString]);
+        } failureBlock:^{
+            // GET discovery failed
+            NSLog(@"Discovery failed!");
+        }];
+    }];
+}
+
+- (void)performHEADDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.entityURI];
     [request setHTTPMethod: @"HEAD"];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -34,26 +48,50 @@
         HTTPLinkHeader *metaPostLink = [self parseLinkHeader:linkHeader fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
-            // HEAD discover failed
-            // TODO: fallback to GET discovery
-            NSLog(@"link header not found!");
-
+            failure();
             return;
         }
 
         self.metaPostURL = metaPostLink.URL;
 
-        NSLog(@"meta post URL found: %@", [self.metaPostURL absoluteString]);
+        success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to perform discovery on %@: %@", self.entityURI, error);
-    }];
+        NSLog(@"Failed to perform HEAD discovery on %@: %@", self.entityURI, error);
 
+        failure();
+    }];
+    
+    [operation start];
+}
+
+- (void)performGETDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.entityURI];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+    // Disable default behaviour to use basic auth
+    operation.shouldUseCredentialStorage = NO;
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
+        HTMLLink *metaPostLink = [self parseHTMLLink:operation.responseString fromURL:[operation.response valueForKey:@"URL"]];
+
+        if (!metaPostLink) {
+            failure();
+            return;
+        }
+
+        self.metaPostURL = metaPostLink.URL;
+
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Failed to perform GET discovery on %@: %@", self.entityURI, error);
+
+        failure();
+    }];
+    
     [operation start];
 }
 
 - (HTTPLinkHeader *)parseLinkHeader:(NSString *)linkHeader fromURL:(NSURL *)originURL {
-    // set metaPostURL property
-
     NSArray *links = [HTTPLinkHeader parseLinks:linkHeader];
 
     NSUInteger index = [links indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -66,6 +104,27 @@
     }
 
     HTTPLinkHeader *metaPostLink = [links objectAtIndex:index];
+
+    if (!metaPostLink.URL.scheme) {
+        metaPostLink.URL = [NSURL URLWithString:[metaPostLink.URL absoluteString] relativeToURL:originURL];
+    }
+
+    return metaPostLink;
+}
+
+- (HTMLLink *)parseHTMLLink:(NSString *)htmlString fromURL:(NSURL *)originURL {
+    NSArray *links = [HTMLLink parseLinks:htmlString];
+
+    NSUInteger index = [links indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        HTMLLink * link = obj;
+        return [[link.attribtues valueForKey:@"rel"] isEqualToString:@"https://tent.io/rels/meta-post"];
+    }];
+
+    if (index == NSNotFound) {
+        return NULL;
+    }
+
+    HTMLLink *metaPostLink = [links objectAtIndex:index];
 
     if (!metaPostLink.URL.scheme) {
         metaPostLink.URL = [NSURL URLWithString:[metaPostLink.URL absoluteString] relativeToURL:originURL];

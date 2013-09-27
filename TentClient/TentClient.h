@@ -18,4 +18,10 @@
 
 - (void)performDiscovery;
 
+- (void)performHEADDiscoveryWithSuccessBlock:(void (^)())success
+                                failureBlock:(void (^)())failure;
+
+- (void)performGETDiscoveryWithSuccessBlock:(void (^)())success
+                               failureBlock:(void (^)())failure;
+
 @end
