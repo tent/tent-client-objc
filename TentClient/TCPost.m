@@ -32,8 +32,16 @@
 + (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {
     if ([@[@"publishedAt", @"receivedAt", @"versionPublishedAt", @"versionReceivedAt"] containsObject:key]) {
         return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *timestamp) {
+            if (!timestamp) {
+                return timestamp;
+            }
+
             return [NSDate dateWithTimeIntervalSince1970:[timestamp doubleValue] / 1000];
         } reverseBlock:^id(id date) {
+            if (!date) {
+                return date;
+            }
+
             return [NSNumber numberWithDouble:[(NSDate *)date timeIntervalSince1970] * 10000];
         }];
     }
