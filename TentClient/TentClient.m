@@ -72,8 +72,6 @@
 
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to perform HEAD discovery on %@: %@", self.entityURI, error);
-
         failure();
     }];
     
@@ -99,8 +97,6 @@
 
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Failed to perform GET discovery on %@: %@", self.entityURI, error);
-
         failure();
     }];
     
@@ -115,8 +111,6 @@
 
     NSURLRequest *request = [NSURLRequest requestWithURL:self.metaPostURL];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    NSLog(@"fetching meta post: %@", [self.metaPostURL absoluteString]);
 
     // Disable default behaviour to use basic auth
     operation.shouldUseCredentialStorage = NO;
@@ -140,8 +134,6 @@
 
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"failed to fetch meta: %@, %@", operation, error);
-
         failure();
     }];
 
