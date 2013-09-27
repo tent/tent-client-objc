@@ -20,6 +20,11 @@
 		88B3BA7C17B6A6F7008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7B17B6A6F7008FD26B /* Foundation.framework */; };
 		88B3BA7E17B6A6FF008FD26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA7D17B6A6FF008FD26B /* Foundation.framework */; };
 		88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 88B3BA3317B695A5008FD26B /* TentClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		88C8132017F4D4710042CDD9 /* HTTPLinkHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */; };
+		88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */; };
+		88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */; };
+		88C8132317F4F55A0042CDD9 /* TentClient.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88B3BA3317B695A5008FD26B /* TentClient.h */; };
+		88C8132417F4F55A0042CDD9 /* HTTPLinkHeader.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */; };
 		D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892054395B7432990444A7F /* libPods-osx_10_9.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +52,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				88C8132317F4F55A0042CDD9 /* TentClient.h in CopyFiles */,
+				88C8132417F4F55A0042CDD9 /* HTTPLinkHeader.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +82,8 @@
 		88B3BA6F17B69B1E008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		88B3BA7B17B6A6F7008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		88B3BA7D17B6A6FF008FD26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPLinkHeader.h; sourceTree = "<group>"; };
+		88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPLinkHeader.m; sourceTree = "<group>"; };
 		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +168,8 @@
 			children = (
 				88B3BA3317B695A5008FD26B /* TentClient.h */,
 				88B3BA3417B695A5008FD26B /* TentClient.m */,
+				88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */,
+				88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */,
 				88B3BA2D17B695A5008FD26B /* Supporting Files */,
 			);
 			path = TentClient;
@@ -233,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */,
+				88C8132017F4D4710042CDD9 /* HTTPLinkHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88B3BA3517B695A5008FD26B /* TentClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
