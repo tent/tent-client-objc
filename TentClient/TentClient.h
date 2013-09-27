@@ -14,14 +14,20 @@
 
 @property (nonatomic) NSURL *metaPostURL;
 
+@property (nonatomic) NSDictionary *metaPost;
+
 + (instancetype)clientWithEntity:(NSURL *)entityURI;
 
-- (void)performDiscovery;
+- (void)performDiscoveryWithSuccessBlock:(void (^)())success
+                            failureBlock:(void (^)())failure;
 
 - (void)performHEADDiscoveryWithSuccessBlock:(void (^)())success
                                 failureBlock:(void (^)())failure;
 
 - (void)performGETDiscoveryWithSuccessBlock:(void (^)())success
                                failureBlock:(void (^)())failure;
+
+- (void)fetchMetaPostWithSuccessBlock:(void (^)())success
+                         failureBlock:(void (^)())failure;
 
 @end

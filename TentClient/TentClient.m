@@ -8,6 +8,7 @@
 
 #import "TentClient.h"
 #import "AFHTTPRequestOperation.h"
+#import "AFURLResponseSerialization.h"
 #import "HTTPLinkHeader.h"
 #import "HTMLLink.h"
 
@@ -21,15 +22,30 @@
     return client;
 }
 
-- (void)performDiscovery {
+- (void)performDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
     [self performHEADDiscoveryWithSuccessBlock:^{
-        NSLog(@"TODO: fetch meta post: %@", [self.metaPostURL absoluteString]);
+        [self fetchMetaPostWithSuccessBlock:^{
+            // Successfully fetched meta post
+            success();
+        } failureBlock:^{
+            // Failed to fetch meta post
+            failure();
+        }];
     } failureBlock:^{
+        // HEAD discovery failed
+
         [self performGETDiscoveryWithSuccessBlock:^{
-            NSLog(@"Get Discovery: TODO: fetch meta post: %@", [self.metaPostURL absoluteString]);
+            [self fetchMetaPostWithSuccessBlock:^{
+                // Successfully fetched meta post
+                success();
+            } failureBlock:^{
+                // Failed to fetch meta post
+                failure();
+            }];
         } failureBlock:^{
             // GET discovery failed
-            NSLog(@"Discovery failed!");
+
+            failure();
         }];
     }];
 }
@@ -88,6 +104,47 @@
         failure();
     }];
     
+    [operation start];
+}
+
+- (void)fetchMetaPostWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
+    if (!self.metaPostURL) {
+        failure();
+        return;
+    }
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:self.metaPostURL];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+    NSLog(@"fetching meta post: %@", [self.metaPostURL absoluteString]);
+
+    // Disable default behaviour to use basic auth
+    operation.shouldUseCredentialStorage = NO;
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (!operation.response.statusCode == 200) {
+            failure();
+            return;
+        }
+
+        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
+
+        if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
+            // Expected an NSMutableDictionary
+            failure();
+            return;
+        }
+
+        // We don't need it to be mutable
+        self.metaPost = [NSDictionary dictionaryWithDictionary:responseJSON];
+
+        success();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to fetch meta: %@, %@", operation, error);
+
+        failure();
+    }];
+
     [operation start];
 }
 
