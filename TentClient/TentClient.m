@@ -22,6 +22,8 @@
     return client;
 }
 
+#pragma mark - Discovery
+
 - (void)performDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
     [self performHEADDiscoveryWithSuccessBlock:^{
         [self fetchMetaPostWithSuccessBlock:^{
@@ -129,8 +131,16 @@
             return;
         }
 
-        // We don't need it to be mutable
-        self.metaPost = [NSDictionary dictionaryWithDictionary:responseJSON];
+        NSError *error;
+        self.metaPost = [MTLJSONAdapter modelOfClass:[TCPost class] fromJSONDictionary:[responseJSON objectForKey:@"post"] error:&error];
+
+        if (error) {
+            failure();
+
+            NSLog(@"failed deserialize TCPost: %@", error);
+
+            return;
+        }
 
         success();
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'Hawk'
   s.dependency 'AFNetworking', '2.0.0-RC3'
+  s.dependency 'Mantle', '1.3'
 end

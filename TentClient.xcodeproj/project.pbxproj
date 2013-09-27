@@ -29,6 +29,10 @@
 		88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8132617F5158B0042CDD9 /* HTMLLink.m */; };
 		88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8132617F5158B0042CDD9 /* HTMLLink.m */; };
 		88C8132A17F515940042CDD9 /* HTMLLink.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8132517F5158B0042CDD9 /* HTMLLink.h */; };
+		88C8133317F5F9480042CDD9 /* TCPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C8133117F5F9480042CDD9 /* TCPost.h */; };
+		88C8133417F5F9480042CDD9 /* TCPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8133217F5F9480042CDD9 /* TCPost.m */; };
+		88C8133517F5F9480042CDD9 /* TCPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8133217F5F9480042CDD9 /* TCPost.m */; };
+		88C8133617F607980042CDD9 /* TCPost.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8133117F5F9480042CDD9 /* TCPost.h */; };
 		D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892054395B7432990444A7F /* libPods-osx_10_9.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +60,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				88C8133617F607980042CDD9 /* TCPost.h in CopyFiles */,
 				88C8132A17F515940042CDD9 /* HTMLLink.h in CopyFiles */,
 				88C8132317F4F55A0042CDD9 /* TentClient.h in CopyFiles */,
 				88C8132417F4F55A0042CDD9 /* HTTPLinkHeader.h in CopyFiles */,
@@ -91,6 +96,8 @@
 		88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPLinkHeader.m; sourceTree = "<group>"; };
 		88C8132517F5158B0042CDD9 /* HTMLLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLLink.h; sourceTree = "<group>"; };
 		88C8132617F5158B0042CDD9 /* HTMLLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLLink.m; sourceTree = "<group>"; };
+		88C8133117F5F9480042CDD9 /* TCPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPost.h; sourceTree = "<group>"; };
+		88C8133217F5F9480042CDD9 /* TCPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPost.m; sourceTree = "<group>"; };
 		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -179,6 +186,8 @@
 				88C8132617F5158B0042CDD9 /* HTMLLink.m */,
 				88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */,
 				88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */,
+				88C8133117F5F9480042CDD9 /* TCPost.h */,
+				88C8133217F5F9480042CDD9 /* TCPost.m */,
 				88B3BA2D17B695A5008FD26B /* Supporting Files */,
 			);
 			path = TentClient;
@@ -252,6 +261,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C8133317F5F9480042CDD9 /* TCPost.h in Headers */,
 				88C8132717F5158B0042CDD9 /* HTMLLink.h in Headers */,
 				88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */,
 				88C8132017F4D4710042CDD9 /* HTTPLinkHeader.h in Headers */,
@@ -468,6 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C8133417F5F9480042CDD9 /* TCPost.m in Sources */,
 				88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88B3BA3517B695A5008FD26B /* TentClient.m in Sources */,
@@ -486,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C8133517F5F9480042CDD9 /* TCPost.m in Sources */,
 				88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,

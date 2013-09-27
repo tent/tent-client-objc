@@ -7,6 +7,7 @@
 //
 
 #import "Foundation/Foundation.h"
+#import "TCPost.h"
 
 @interface TentClient : NSObject
 
@@ -14,9 +15,11 @@
 
 @property (nonatomic) NSURL *metaPostURL;
 
-@property (nonatomic) NSDictionary *metaPost;
+@property (nonatomic) TCPost *metaPost;
 
 + (instancetype)clientWithEntity:(NSURL *)entityURI;
+
+#pragma mark - Discovery
 
 - (void)performDiscoveryWithSuccessBlock:(void (^)())success
                             failureBlock:(void (^)())failure;
