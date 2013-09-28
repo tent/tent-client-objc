@@ -35,4 +35,6 @@
 
 @property (nonatomic) NSArray *attachments;
 
+- (NSDictionary *)serializeJSONObject;
+
 @end

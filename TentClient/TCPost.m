@@ -8,6 +8,7 @@
 
 #import "TCPost.h"
 #import "TCMetaPost.h"
+#import "NSJSONSerialization+ObjectCleanup.h"
 
 @implementation TCPost
 
@@ -83,6 +84,10 @@
     self.permissionsPublic = YES;
 
     return self;
+}
+
+- (NSDictionary *)serializeJSONObject {
+    return [NSJSONSerialization removeEmptyProperties:[MTLJSONAdapter JSONDictionaryFromModel:self]];
 }
 
 @end
