@@ -15,12 +15,16 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     NSMutableDictionary *mapping = [NSMutableDictionary dictionaryWithDictionary:[super JSONKeyPathsByPropertyKey]];
 
+    [mapping removeObjectForKey:@"content"];
+
     [mapping addEntriesFromDictionary: @{
       @"servers": @"content.servers",
       @"profileName": @"content.profile.name",
       @"profileBio": @"content.profile.bio",
       @"profileWebsite": @"content.profile.website",
-      @"profileLocation": @"content.profile.location"
+      @"profileLocation": @"content.profile.location",
+      @"metaEntityURI": @"content.entity",
+      @"previousEntities": @"content.previous_entities"
     }];
 
     return [NSDictionary dictionaryWithDictionary:mapping];

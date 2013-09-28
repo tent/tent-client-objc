@@ -20,6 +20,8 @@
 
 @property (nonatomic) NSString *ID;
 
+@property (nonatomic) NSURL *entityURI;
+
 @property (nonatomic) NSString *typeURI;
 
 @property (nonatomic) NSArray *mentions;

@@ -17,4 +17,7 @@
 @property (nonatomic) NSURL *profileWebsite;
 @property (nonatomic) NSString *profileLocation;
 
+@property (nonatomic) NSURL *metaEntityURI;
+@property (nonatomic) NSArray *previousEntities;
+
 @end

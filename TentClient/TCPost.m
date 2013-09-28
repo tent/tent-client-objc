@@ -26,6 +26,7 @@
              @"versionPublishedAt": @"version.published_at",
              @"versionReceivedAt": @"version.received_at",
              @"ID": @"id",
+             @"entityURI": @"entity",
              @"typeURI": @"type",
              @"versionID": @"version.id",
              @"versionParents": @"version.parents",
@@ -64,6 +65,14 @@
         return wrappedBoolean;
     } reverseBlock:^id(NSNumber *wrappedBoolean) {
         return wrappedBoolean.boolValue ? @YES : @NO;
+    }];
+}
+
++ (NSValueTransformer *)entityURIJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *entityStr) {
+        return [NSURL URLWithString:entityStr];
+    } reverseBlock:^id(NSURL *entityURI) {
+        return [entityURI absoluteString];
     }];
 }
 
