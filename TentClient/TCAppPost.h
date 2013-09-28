@@ -3,7 +3,7 @@
 //  TentClient
 //
 //  Created by Jesse Stuart on 9/28/13.
-//  Copyright (c) 2013 Tent. All rights reserved.
+//  Copyright (c) 2013 Tent.is, LLC. All rights reserved.
 //
 
 #import "TCPost.h"
