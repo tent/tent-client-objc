@@ -18,6 +18,7 @@
     [mapping removeObjectForKey:@"content"];
 
     [mapping addEntriesFromDictionary: @{
+      @"content": NSNull.null,
       @"servers": @"content.servers",
       @"profileName": @"content.profile.name",
       @"profileBio": @"content.profile.bio",
