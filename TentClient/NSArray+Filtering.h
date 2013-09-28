@@ -13,4 +13,6 @@
 - (NSArray *)filteredArrayUsingKeepBlock:(BOOL (^)(id obj))keepBlock
                               valueBlock:(id (^)(id obj))valueBlock;
 
+- (NSArray *)transposedArrayUsingBlock:(id (^)(id obj))block;
+
 @end

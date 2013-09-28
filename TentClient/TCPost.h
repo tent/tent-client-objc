@@ -31,4 +31,6 @@
 @property (nonatomic) NSArray *permissionsEntities;
 @property (nonatomic) NSArray *permissionsGroups;
 
+@property (nonatomic) NSArray *attachments;
+
 @end

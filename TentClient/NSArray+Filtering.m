@@ -22,4 +22,14 @@
     return [NSArray arrayWithArray:tmpArray];
 }
 
+- (NSArray *)transposedArrayUsingBlock:(id (^)(id))block {
+    NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
+
+    for (id obj in self) {
+        [tmpArray addObject:block(obj)];
+    }
+
+    return [NSArray arrayWithArray:tmpArray];
+}
+
 @end

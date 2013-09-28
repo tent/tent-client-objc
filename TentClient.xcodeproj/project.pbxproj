@@ -45,6 +45,14 @@
 		88C8135217F640320042CDD9 /* NSArray+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135017F640320042CDD9 /* NSArray+Filtering.m */; };
 		88C8135317F640320042CDD9 /* NSArray+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135017F640320042CDD9 /* NSArray+Filtering.m */; };
 		88C8135417F6403A0042CDD9 /* NSArray+Filtering.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8134F17F640320042CDD9 /* NSArray+Filtering.h */; };
+		88C8135717F645450042CDD9 /* TCMetaPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C8135517F645450042CDD9 /* TCMetaPost.h */; };
+		88C8135817F645450042CDD9 /* TCMetaPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135617F645450042CDD9 /* TCMetaPost.m */; };
+		88C8135917F645450042CDD9 /* TCMetaPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135617F645450042CDD9 /* TCMetaPost.m */; };
+		88C8135A17F6454D0042CDD9 /* TCMetaPost.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8135517F645450042CDD9 /* TCMetaPost.h */; };
+		88C8135D17F64A040042CDD9 /* TCMetaPostServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */; };
+		88C8135E17F64A040042CDD9 /* TCMetaPostServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */; };
+		88C8135F17F64A040042CDD9 /* TCMetaPostServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */; };
+		88C8136017F64A0D0042CDD9 /* TCMetaPostServer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */; };
 		D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892054395B7432990444A7F /* libPods-osx_10_9.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +80,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				88C8136017F64A0D0042CDD9 /* TCMetaPostServer.h in CopyFiles */,
+				88C8135A17F6454D0042CDD9 /* TCMetaPost.h in CopyFiles */,
 				88C8135417F6403A0042CDD9 /* NSArray+Filtering.h in CopyFiles */,
 				88C8134E17F6235C0042CDD9 /* NSDictionary+Filtering.h in CopyFiles */,
 				88C8134817F621090042CDD9 /* NSJSONSerialization+ObjectCleanup.h in CopyFiles */,
@@ -119,6 +129,10 @@
 		88C8134A17F6233D0042CDD9 /* NSDictionary+Filtering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Filtering.m"; sourceTree = "<group>"; };
 		88C8134F17F640320042CDD9 /* NSArray+Filtering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Filtering.h"; sourceTree = "<group>"; };
 		88C8135017F640320042CDD9 /* NSArray+Filtering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Filtering.m"; sourceTree = "<group>"; };
+		88C8135517F645450042CDD9 /* TCMetaPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMetaPost.h; sourceTree = "<group>"; };
+		88C8135617F645450042CDD9 /* TCMetaPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMetaPost.m; sourceTree = "<group>"; };
+		88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCMetaPostServer.h; sourceTree = "<group>"; };
+		88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCMetaPostServer.m; sourceTree = "<group>"; };
 		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -209,6 +223,10 @@
 				88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */,
 				88C8133117F5F9480042CDD9 /* TCPost.h */,
 				88C8133217F5F9480042CDD9 /* TCPost.m */,
+				88C8135517F645450042CDD9 /* TCMetaPost.h */,
+				88C8135617F645450042CDD9 /* TCMetaPost.m */,
+				88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */,
+				88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */,
 				88C8134317F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h */,
 				88C8134417F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m */,
 				88C8134F17F640320042CDD9 /* NSArray+Filtering.h */,
@@ -294,6 +312,8 @@
 				88C8134517F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h in Headers */,
 				88C8134B17F6233D0042CDD9 /* NSDictionary+Filtering.h in Headers */,
 				88C8135117F640320042CDD9 /* NSArray+Filtering.h in Headers */,
+				88C8135D17F64A040042CDD9 /* TCMetaPostServer.h in Headers */,
+				88C8135717F645450042CDD9 /* TCMetaPost.h in Headers */,
 				88C8132017F4D4710042CDD9 /* HTTPLinkHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,9 +531,11 @@
 				88C8133417F5F9480042CDD9 /* TCPost.m in Sources */,
 				88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */,
+				88C8135817F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134617F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
 				88B3BA3517B695A5008FD26B /* TentClient.m in Sources */,
 				88C8134C17F6233D0042CDD9 /* NSDictionary+Filtering.m in Sources */,
+				88C8135E17F64A040042CDD9 /* TCMetaPostServer.m in Sources */,
 				88C8135217F640320042CDD9 /* NSArray+Filtering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,9 +555,11 @@
 				88C8133517F5F9480042CDD9 /* TCPost.m in Sources */,
 				88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */,
+				88C8135917F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134717F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
 				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,
 				88C8134D17F6233D0042CDD9 /* NSDictionary+Filtering.m in Sources */,
+				88C8135F17F64A040042CDD9 /* TCMetaPostServer.m in Sources */,
 				88C8135317F640320042CDD9 /* NSArray+Filtering.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

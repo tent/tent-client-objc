@@ -7,8 +7,17 @@
 //
 
 #import "TCPost.h"
+#import "TCMetaPost.h"
 
 @implementation TCPost
+
++ (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
+    if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/meta/"]) {
+        return [TCMetaPost class];
+    }
+
+    return self;
+}
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
@@ -25,7 +34,8 @@
              @"content": @"content",
              @"permissionsPublic": @"permissions.public",
              @"permissionsEntities": @"permissions.entities",
-             @"permissionsGroups": @"permissions.groups"
+             @"permissionsGroups": @"permissions.groups",
+             @"attachments": @"attachments"
              };
 }
 
