@@ -51,4 +51,18 @@
     return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:[TCMetaPostServer class]];
 }
 
+- (TCMetaPostServer *)preferredServer {
+    return [self preferredServerFromIndex:[NSNumber numberWithInt:0]];
+}
+
+- (TCMetaPostServer *)preferredServerFromIndex:(NSNumber *)index {
+    NSArray *sortedServers = [self.servers filteredArrayUsingKeepBlock:^BOOL(TCMetaPostServer *server) {
+        return [server.preferenceIndex integerValue] >= [index integerValue] ? YES : NO;
+    } valueBlock:^id(id obj) {
+        return obj;
+    }];
+
+    return [sortedServers firstObject];
+}
+
 @end

@@ -193,4 +193,67 @@
     return metaPostLink;
 }
 
+#pragma mark - OAuth
+
+- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(NSError *))failure {
+    // Ensure we have the meta post
+    if (!self.metaPost) {
+        return [self performDiscoveryWithSuccessBlock:^{
+            [self authenticateWithApp:appPost successBlock:success failureBlock:failure];
+        } failureBlock:^{
+            NSError *error = [NSError errorWithDomain:TCDiscoveryFailureErrorDomain code:1 userInfo:nil];
+            failure(error);
+        }];
+    }
+
+    if (!appPost.ID) {
+        return [self newPost:appPost successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
+            [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure];
+        } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            failure(error);
+        }];
+    }
+
+}
+
+#pragma mark - API Endpoints
+
+- (void)newPost:(TCPost *)post successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] newPostURL]];
+    [request setHTTPMethod: @"POST"];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+    // Disable default behaviour to use basic auth
+    operation.shouldUseCredentialStorage = NO;
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
+        NSError *error;
+        if (!operation.response.statusCode == 200) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
+
+        if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
+            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        TCPost *_post = [MTLJSONAdapter modelOfClass:[TCPost class] fromJSONDictionary:[responseJSON objectForKey:@"post"] error:&error];
+
+        if (error) {
+            failure(operation, error);
+            
+            return;
+        }
+
+        success(operation, _post);
+    } failure:failure];
+    
+    [operation start];
+}
+
 @end

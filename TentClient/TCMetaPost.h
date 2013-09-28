@@ -7,6 +7,7 @@
 //
 
 #import "TCPost.h"
+#import "TCMetaPostServer.h"
 
 @interface TCMetaPost : TCPost
 
@@ -19,5 +20,8 @@
 
 @property (nonatomic) NSURL *metaEntityURI;
 @property (nonatomic) NSArray *previousEntities;
+
+- (TCMetaPostServer *)preferredServer;
+- (TCMetaPostServer *)preferredServerFromIndex:(NSNumber *)index;
 
 @end

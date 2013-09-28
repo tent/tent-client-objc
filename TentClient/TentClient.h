@@ -8,6 +8,13 @@
 
 #import "Foundation/Foundation.h"
 #import "TCPost.h"
+#import "TCMetaPost.h"
+#import "TCAppPost.h"
+#import "TCAuthPost.h"
+
+NSString * const TCInvalidResponseCodeErrorDomain;
+NSString * const TCInvalidResponseBodyErrorDomain;
+NSString * const TCDiscoveryFailureErrorDomain;
 
 @interface TentClient : NSObject
 
@@ -15,7 +22,7 @@
 
 @property (nonatomic) NSURL *metaPostURL;
 
-@property (nonatomic) TCPost *metaPost;
+@property (nonatomic) TCMetaPost *metaPost;
 
 + (instancetype)clientWithEntity:(NSURL *)entityURI;
 
@@ -32,5 +39,18 @@
 
 - (void)fetchMetaPostWithSuccessBlock:(void (^)())success
                          failureBlock:(void (^)())failure;
+
+#pragma mark - OAuth
+
+/*
+ - Performs discovery on entity unless metaPost present
+ - Creates app when id absent
+ - Opens webview for user authentication
+ - Performs token exchange when token returned
+ - Calls success or failure block
+ */
+- (void)authenticateWithApp:(TCAppPost *)appPost
+               successBlock:(void (^)(TCAppPost *appPost, TCAuthPost *authPost))success
+               failureBlock:(void (^)(NSError *error))failure;
 
 @end
