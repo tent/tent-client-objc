@@ -14,6 +14,6 @@ Pod::Spec.new do |s|
   s.source_files = 'TentClient/**/*.{h,m}'
 
   s.dependency 'Hawk'
-  s.dependency 'AFNetworking', '2.0.0-RC3'
+  s.dependency 'AFNetworking', '2.0.0'
   s.dependency 'Mantle', '1.3'
 end

@@ -2,7 +2,7 @@ inhibit_all_warnings!
 
 def common_pods
   pod 'Hawk', :podspec => 'https://raw.github.com/tent/hawk-objc/master/Hawk.podspec'
-  pod 'AFNetworking', '2.0.0-RC3'
+  pod 'AFNetworking', '2.0.0'
   pod 'Mantle', '1.3'
 end
 
