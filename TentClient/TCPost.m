@@ -23,6 +23,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{
+             @"clientReceivedAt": NSNull.null,
              @"publishedAt": @"published_at",
              @"receivedAt": @"received_at",
              @"versionPublishedAt": @"version.published_at",
@@ -83,6 +84,8 @@
     if (self == nil) return nil;
 
     self.permissionsPublic = YES;
+
+    self.clientReceivedAt = [[NSDate alloc] init];
 
     return self;
 }

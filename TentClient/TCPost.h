@@ -11,6 +11,8 @@
 
 @interface TCPost : MTLModel <MTLJSONSerializing>
 
+@property (nonatomic) NSDate *clientReceivedAt;
+
 @property (nonatomic) NSDate *publishedAt;
 @property (nonatomic) NSDate *receivedAt;
 @property (nonatomic) NSDate *versionPublishedAt;
