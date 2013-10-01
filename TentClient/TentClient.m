@@ -13,6 +13,8 @@
 #import "HTTPLinkHeader.h"
 #import "HTMLLink.h"
 #import "NSJSONSerialization+ObjectCleanup.h"
+#import "NSString+Parser.h"
+#import "HawkAuth.h"
 
 @implementation TentClient
 
@@ -250,6 +252,53 @@
     } failure:failure];
     
     [operation start];
+}
+
+#pragma mark - Authentication
+
+- (NSURLRequest *)authenticateRequest:(NSURLRequest *)request {
+    if (!self.credentialsPost) {
+        return request;
+    }
+
+    HawkAuth *auth = [[HawkAuth alloc] init];
+
+    auth.credentials = [[HawkCredentials alloc] initWithHawkId:self.credentialsPost.ID withKey:self.credentialsPost.key withAlgorithm:self.credentialsPost.algorithm];
+
+    auth.contentType = [[request allHTTPHeaderFields] valueForKey:@"Content-Type"];
+
+    auth.payload = [request HTTPBody];
+
+    auth.method = [request HTTPMethod];
+
+    auth.port = [request.URL port];
+
+    auth.host = [request.URL host];
+
+    auth.requestUri = [request.URL absoluteString];
+
+    auth.nonce = [self randomStringOfLength:[NSNumber numberWithInt:6]];
+
+    auth.timestamp = [[NSDate alloc] init];
+
+    NSString *authorizationHeader = [[auth requestHeader] substringFromIndex:14]; // Remove @"Authorization: " prefix
+
+    NSMutableURLRequest *authedRequest = (NSMutableURLRequest *)(request);
+    [authedRequest addValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
+
+    return (NSURLRequest *)authedRequest;
+}
+
+-(NSString *)randomStringOfLength:(NSNumber *)length {
+    static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:[length integerValue]];
+
+    for (int i=0; i<[length integerValue]; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+    }
+
+    return randomString;
 }
 
 - (AFHTTPRequestOperation *)requestOperationWithURLRequest:(NSURLRequest *)request {

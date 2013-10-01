@@ -25,6 +25,8 @@ NSString * const TCDiscoveryFailureErrorDomain;
 
 @property (nonatomic) TCMetaPost *metaPost;
 
+@property (nonatomic) TCCredentialsPost *credentialsPost;
+
 + (instancetype)clientWithEntity:(NSURL *)entityURI;
 
 #pragma mark - Discovery
