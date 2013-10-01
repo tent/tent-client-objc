@@ -26,13 +26,25 @@
             return obj;
         }];
     } else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
-        return [(NSDictionary *)JSONObject filterObjectsUsingKeepBlock:^BOOL(id key, id obj) {
+        // Filter out Null values
+        NSDictionary *cleanJSONObject = [(NSDictionary *)JSONObject filterObjectsUsingKeepBlock:^BOOL(id key, id obj) {
             return ![obj isKindOfClass:[NSNull class]];
         } valueBlock:^id(id key, id obj) {
             if ([obj isKindOfClass:[NSDictionary class]] || [obj isKindOfClass:[NSArray class]]) {
                 return [self removeEmptyProperties:obj];
             }
 
+            return obj;
+        }];
+
+        // Filter out empty NSDictionary values
+        return [cleanJSONObject filterObjectsUsingKeepBlock:^BOOL(id key, id obj) {
+            if ([obj isKindOfClass:[NSDictionary class]]) {
+                return [[obj allKeys] count] > 0;
+            }
+
+            return YES;
+        } valueBlock:^id(id key, id obj) {
             return obj;
         }];
     }
