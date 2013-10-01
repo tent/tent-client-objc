@@ -18,6 +18,7 @@
     [mapping removeObjectForKey:@"content"];
 
     [mapping addEntriesFromDictionary: @{
+                                         @"content": NSNull.null,
                                          @"name": @"content.name",
                                          @"description": @"content.description",
                                          @"URL": @"content.url",
@@ -37,13 +38,13 @@
     if ([@[@"URL", @"redirectURI", @"notificationURL"] containsObject:key]) {
         return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *urlStr) {
             if (!urlStr) {
-                return urlStr;
+                return NSNull.null;
             }
 
             return [NSURL URLWithString:urlStr];
         } reverseBlock:^id(NSURL *url) {
             if (!url) {
-                return url;
+                return NSNull.null;
             }
 
             return [url absoluteString];
