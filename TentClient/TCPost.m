@@ -9,6 +9,9 @@
 
 #import "TCPost.h"
 #import "TCMetaPost.h"
+#import "TCAppPost.h"
+#import "TCAuthPost.h"
+#import "TCCredentialsPost.h"
 #import "NSJSONSerialization+ObjectCleanup.h"
 
 @implementation TCPost
@@ -16,6 +19,18 @@
 + (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
     if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/meta/"]) {
         return [TCMetaPost class];
+    }
+
+    if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/app"]) {
+        return [TCAppPost class];
+    }
+
+    if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/auth"]) {
+        return [TCAuthPost class];
+    }
+
+    if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/credentials"]) {
+        return [TCCredentialsPost class];
     }
 
     return self;
