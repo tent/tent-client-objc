@@ -8,6 +8,7 @@
 //
 
 #import "TCPost.h"
+#import "TCCredentialsPost.h"
 
 @interface TCAppPost : TCPost
 
@@ -21,6 +22,6 @@
 @property (nonatomic) NSArray *writeTypes;
 @property (nonatomic) NSArray *scopes;
 
-@property (nonatomic) NSDictionary *credentials;
+@property (nonatomic) TCCredentialsPost *credentialsPost;
 
 @end

@@ -61,6 +61,10 @@
 		88C8136F17F73A7E0042CDD9 /* TCAuthPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */; };
 		88C8137017F73A7E0042CDD9 /* TCAuthPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */; };
 		88C8137117F73A870042CDD9 /* TCAuthPost.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */; };
+		88C8137717F7584B0042CDD9 /* TCCredentialsPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */; };
+		88C8137817F7584B0042CDD9 /* TCCredentialsPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */; };
+		88C8137917F7584B0042CDD9 /* TCCredentialsPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */; };
+		88C8137A17F758580042CDD9 /* TCCredentialsPost.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */; };
 		D8A1E87FF08D49E2BF54073E /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892054395B7432990444A7F /* libPods-osx_10_9.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +92,7 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				88C8137A17F758580042CDD9 /* TCCredentialsPost.h in CopyFiles */,
 				88C8137117F73A870042CDD9 /* TCAuthPost.h in CopyFiles */,
 				88C8136B17F733580042CDD9 /* TCAppPost.h in CopyFiles */,
 				88C8136017F64A0D0042CDD9 /* TCMetaPostServer.h in CopyFiles */,
@@ -147,6 +152,8 @@
 		88C8136717F7334E0042CDD9 /* TCAppPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAppPost.m; sourceTree = "<group>"; };
 		88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCAuthPost.h; sourceTree = "<group>"; };
 		88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCAuthPost.m; sourceTree = "<group>"; };
+		88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCredentialsPost.h; sourceTree = "<group>"; };
+		88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCCredentialsPost.m; sourceTree = "<group>"; };
 		C53F34B556EB4419B56685D6 /* libPods-osx_10_8.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_8.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -241,6 +248,8 @@
 				88C8136717F7334E0042CDD9 /* TCAppPost.m */,
 				88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */,
 				88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */,
+				88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */,
+				88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */,
 				88C8135517F645450042CDD9 /* TCMetaPost.h */,
 				88C8135617F645450042CDD9 /* TCMetaPost.m */,
 				88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */,
@@ -328,6 +337,7 @@
 				88C8136817F7334E0042CDD9 /* TCAppPost.h in Headers */,
 				88C8132717F5158B0042CDD9 /* HTMLLink.h in Headers */,
 				88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */,
+				88C8137717F7584B0042CDD9 /* TCCredentialsPost.h in Headers */,
 				88C8134517F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h in Headers */,
 				88C8134B17F6233D0042CDD9 /* NSDictionary+Filtering.h in Headers */,
 				88C8135117F640320042CDD9 /* NSArray+Filtering.h in Headers */,
@@ -549,6 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88C8133417F5F9480042CDD9 /* TCPost.m in Sources */,
+				88C8137817F7584B0042CDD9 /* TCCredentialsPost.m in Sources */,
 				88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135817F645450042CDD9 /* TCMetaPost.m in Sources */,
@@ -575,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88C8133517F5F9480042CDD9 /* TCPost.m in Sources */,
+				88C8137917F7584B0042CDD9 /* TCCredentialsPost.m in Sources */,
 				88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */,
 				88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135917F645450042CDD9 /* TCMetaPost.m in Sources */,
