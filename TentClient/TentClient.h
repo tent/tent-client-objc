@@ -13,9 +13,9 @@
 #import "TCAppPost.h"
 #import "TCAuthPost.h"
 
-NSString * const TCInvalidResponseCodeErrorDomain;
-NSString * const TCInvalidResponseBodyErrorDomain;
-NSString * const TCDiscoveryFailureErrorDomain;
+static NSString * const TCInvalidResponseCodeErrorDomain = @"Invalid Response Code";
+static NSString * const TCInvalidResponseBodyErrorDomain = @"Invalid Response Body";
+static NSString * const TCDiscoveryFailureErrorDomain = @"Discovery Failure";
 
 @interface TentClient : NSObject
 
