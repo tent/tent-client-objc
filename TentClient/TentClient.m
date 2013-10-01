@@ -113,11 +113,8 @@
         return;
     }
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:self.metaPostURL];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-
-    // Disable default behaviour to use basic auth
-    operation.shouldUseCredentialStorage = NO;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.metaPostURL];
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (!operation.response.statusCode == 200) {
@@ -222,10 +219,8 @@
 - (void)newPost:(TCPost *)post successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] newPostURL]];
     [request setHTTPMethod: @"POST"];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
-    // Disable default behaviour to use basic auth
-    operation.shouldUseCredentialStorage = NO;
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSError *error;
@@ -255,6 +250,15 @@
     } failure:failure];
     
     [operation start];
+}
+
+- (AFHTTPRequestOperation *)requestOperationWithURLRequest:(NSURLRequest *)request {
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+
+    // Disable default behaviour to use basic auth
+    operation.shouldUseCredentialStorage = NO;
+
+    return operation;
 }
 
 @end
