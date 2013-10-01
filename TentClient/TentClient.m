@@ -254,6 +254,56 @@
     [operation start];
 }
 
+- (void)getPostWithEntity:(NSString *)entity postID:(NSString *)postID successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSURL *postURL = [[self.metaPost preferredServer] postURLWithEntity:entity postID:postID];
+
+    [self getPostFromURL:postURL successBlock:success failureBlock:failure];
+}
+
+- (void)getPostFromURL:(NSURL *)postURL successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSURLRequest *request;
+
+    if (![[postURL parameterString] firstIndexOf:@"bewit="]) {
+        // Request does not use bewit authentication
+        // Add authorization header
+
+        request = [self authenticateRequest:[NSURLRequest requestWithURL:postURL]];
+    } else {
+        request = [NSURLRequest requestWithURL:postURL];
+    }
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
+        NSError *error;
+        if (!operation.response.statusCode == 200) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
+
+        if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
+            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        TCPost *_post = [MTLJSONAdapter modelOfClass:[TCPost class] fromJSONDictionary:[responseJSON objectForKey:@"post"] error:&error];
+
+        if (error) {
+            failure(operation, error);
+
+            return;
+        }
+
+        success(operation, _post);
+    } failure:failure];
+
+    [operation start];
+}
+
 #pragma mark - Authentication
 
 - (NSURLRequest *)authenticateRequest:(NSURLRequest *)request {

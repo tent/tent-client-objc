@@ -12,6 +12,7 @@
 #import "TCMetaPost.h"
 #import "TCAppPost.h"
 #import "TCAuthPost.h"
+#import "AFHTTPRequestOperation.h"
 
 static NSString * const TCInvalidResponseCodeErrorDomain = @"Invalid Response Code";
 static NSString * const TCInvalidResponseBodyErrorDomain = @"Invalid Response Body";
