@@ -65,7 +65,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSString *linkHeader = [[operation.response allHeaderFields] valueForKey:@"Link"];
 
-        HTTPLinkHeader *metaPostLink = [self parseLinkHeader:linkHeader fromURL:[operation.response valueForKey:@"URL"]];
+        HTTPLinkHeader *metaPostLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/meta-post" fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
             failure();
@@ -149,12 +149,12 @@
     [operation start];
 }
 
-- (HTTPLinkHeader *)parseLinkHeader:(NSString *)linkHeader fromURL:(NSURL *)originURL {
+- (HTTPLinkHeader *)parseLinkHeader:(NSString *)linkHeader matchingRel:(NSString *)rel fromURL:(NSURL *)originURL {
     NSArray *links = [HTTPLinkHeader parseLinks:linkHeader];
 
     NSUInteger index = [links indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         HTTPLinkHeader * link = obj;
-        return [[link.attribtues valueForKey:@"rel"] isEqualToString:@"https://tent.io/rels/meta-post"];
+        return [[link.attribtues valueForKey:@"rel"] isEqualToString:rel];
     }];
 
     if (index == NSNotFound) {
