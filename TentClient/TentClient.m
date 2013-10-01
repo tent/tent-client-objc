@@ -222,7 +222,26 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] newPostURL]];
     [request setHTTPMethod: @"POST"];
 
-    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
+    // Set request body
+    NSError *serializationError;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:[post serializeJSONObject] options:0 error:&serializationError];
+
+    if (serializationError) {
+        failure(nil, serializationError);
+        return;
+    }
+
+    [request setHTTPBody:requestData];
+
+    // Set Content-Type
+    [request addValue:[NSString stringWithFormat:@"application/vnd.tent.post.v0+json; type=\"%@\"", post.typeURI] forHTTPHeaderField:@"Content-Type"];
+
+    // Authenticate request
+    NSURLRequest *authedRequest = [self authenticateRequest:request];
+
+    NSLog(@"newPost request headers: %@", [authedRequest allHTTPHeaderFields]);
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:authedRequest];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSError *error;
