@@ -373,14 +373,12 @@
     // Authenticate request
     NSURLRequest *authedRequest = [self authenticateRequest:request];
 
-    NSLog(@"newPost request headers: %@", [authedRequest allHTTPHeaderFields]);
-
     AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:authedRequest];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSError *error;
         if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
-            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
             failure(operation, error);
             return;
         }
@@ -388,7 +386,7 @@
         id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
 
         if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
-            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:@{ @"operation": operation }];
+            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:nil];
             failure(operation, error);
             return;
         }
