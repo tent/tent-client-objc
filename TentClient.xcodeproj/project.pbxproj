@@ -14,6 +14,8 @@
 		8878E1AD17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 8878E1AB17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.h */; };
 		8878E1AE17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1AC17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.m */; };
 		8878E1AF17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1AC17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.m */; };
+		8878E1B017FBA50D007EDC3D /* WebViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8878E1A617FB8A58007EDC3D /* WebViewController.h */; };
+		8878E1B117FBA513007EDC3D /* NSURL+QueryStringEncoding.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8878E1AB17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.h */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
 		88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2317B695A5008FD26B /* TentClient.framework */; };
@@ -98,6 +100,8 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				8878E1B117FBA513007EDC3D /* NSURL+QueryStringEncoding.h in CopyFiles */,
+				8878E1B017FBA50D007EDC3D /* WebViewController.h in CopyFiles */,
 				88C8137A17F758580042CDD9 /* TCCredentialsPost.h in CopyFiles */,
 				88C8137117F73A870042CDD9 /* TCAuthPost.h in CopyFiles */,
 				88C8136B17F733580042CDD9 /* TCAppPost.h in CopyFiles */,
