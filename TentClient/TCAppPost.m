@@ -20,7 +20,7 @@
     [mapping addEntriesFromDictionary: @{
                                          @"content": NSNull.null,
                                          @"name": @"content.name",
-                                         @"description": @"content.description",
+                                         @"appDescription": @"content.description",
                                          @"URL": @"content.url",
                                          @"redirectURI": @"content.redirect_uri",
                                          @"notificationURL": @"content.notification_url",

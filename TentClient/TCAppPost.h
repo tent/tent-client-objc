@@ -13,7 +13,7 @@
 @interface TCAppPost : TCPost
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) NSString *description;
+@property (nonatomic) NSString *appDescription;
 @property (nonatomic) NSURL *URL;
 @property (nonatomic) NSURL *redirectURI;
 @property (nonatomic) NSURL *notificationURL;
