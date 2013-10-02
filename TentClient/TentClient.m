@@ -208,12 +208,33 @@
         }];
     }
 
+    // Create app post
     if (!appPost.ID) {
+        NSLog(@"create app post: %@", appPost.ID);
         return [self newPost:appPost successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
-            [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
-        } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            failure(operation, error);
-        }];
+            NSError *error;
+            if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
+                error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
+                failure(operation, error);
+                return;
+            }
+
+            // Fetch linked credentials post
+            NSString *linkHeader = [[operation.response allHeaderFields] valueForKey:@"Link"];
+
+            HTTPLinkHeader *appCredentialsLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/credentials" fromURL:[operation.response valueForKey:@"URL"]];
+
+            if (!appCredentialsLink) {
+                error = [NSError errorWithDomain:TCInvalidLinkHeaderErrorDomain code:1 userInfo:nil];
+                failure(operation, error);
+                return;
+            }
+
+            [self getPostFromURL:appCredentialsLink.URL successBlock:^(AFHTTPRequestOperation *operation, TCPost *appCredentialsPost) {
+                ((TCAppPost *)post).credentialsPost = (TCCredentialsPost *)appCredentialsPost;
+                [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
+            } failureBlock:failure];
+        } failureBlock:failure];
     }
 
 
