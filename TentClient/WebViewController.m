@@ -17,6 +17,7 @@
 
 {
     id completionBlock;
+    NSURLRequest *currentRequest;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -45,8 +46,18 @@
 
 #pragma mark - UIWebViewDelegate
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    currentRequest = request;
+
+    return YES;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     ((void (^)(NSURLRequest *))completionBlock)(webView.request);
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    ((void (^)(NSURLRequest *))completionBlock)(currentRequest);
 }
 
 #pragma mark -
