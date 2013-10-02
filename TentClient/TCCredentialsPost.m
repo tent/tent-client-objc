@@ -24,19 +24,13 @@
     return [NSDictionary dictionaryWithDictionary:mapping];
 }
 
-+ (NSValueTransformer *)algorithmURIJSONTransformer {
++ (NSValueTransformer *)algorithmJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *algorithm) {
-        if ([algorithm isEqualToString:@"sha-256"]) {
-            return [NSNumber numberWithInt:CryptoAlgorithmSHA256];
-        }
-
-        return [[NSNull alloc] init];
+        // SHA256 is currently the only valid algorithm
+        return [NSNumber numberWithInteger:CryptoAlgorithmSHA256];
     } reverseBlock:^id(NSNumber *algorithm) {
-        if ([algorithm integerValue] == CryptoAlgorithmSHA256) {
-            return @"sha-256";
-        }
-
-        return [[NSNull alloc] init];
+        // SHA256 is current the only valid algorithm
+        return @"sha256";
     }];
 }
 
