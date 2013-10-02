@@ -234,6 +234,11 @@
                         return;
                     }
 
+                    if ([params objectForKey:@"error"]) {
+                        failure(nil, [NSError errorWithDomain:TCOAuthErrorErrorDomain code:1 userInfo:@{ @"params": params }]);
+                        return;
+                    }
+
                     // TODO: Token exchange
                 }];
             }
