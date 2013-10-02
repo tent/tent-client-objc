@@ -15,6 +15,8 @@
 #import "NSJSONSerialization+ObjectCleanup.h"
 #import "NSString+Parser.h"
 #import "HawkAuth.h"
+#import "WebViewController.h"
+#import "NSURL+QueryStringEncoding.h"
 
 @implementation TentClient
 
@@ -195,25 +197,51 @@
 
 #pragma mark - OAuth
 
-- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(NSError *))failure {
+- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
     // Ensure we have the meta post
     if (!self.metaPost) {
         return [self performDiscoveryWithSuccessBlock:^{
-            [self authenticateWithApp:appPost successBlock:success failureBlock:failure];
+            [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
         } failureBlock:^{
             NSError *error = [NSError errorWithDomain:TCDiscoveryFailureErrorDomain code:1 userInfo:nil];
-            failure(error);
+            failure(nil, error);
         }];
     }
 
     if (!appPost.ID) {
         return [self newPost:appPost successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
-            [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure];
+            [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
         } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            failure(error);
+            failure(operation, error);
         }];
     }
 
+
+    // Build OAuth redirect URI
+    NSString *state = [self randomStringOfLength:[NSNumber numberWithInteger:32]];
+    NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:appPost.ID state:state];
+
+    // Open oauthRedirectURI in a UIWebView
+    WebViewController *webViewController = [[WebViewController alloc] init];
+
+    [controller presentViewController:webViewController animated:YES completion:^{
+        [webViewController loadRequest:[NSURLRequest requestWithURL:oauthRedirectURI] withCompletionBlock:^(NSURLRequest *request) {
+            if ([[request.URL absoluteString] hasPrefix:[appPost.redirectURI absoluteString]]) {
+                [controller dismissViewControllerAnimated:YES completion:^{
+                    NSDictionary *params = [request.URL parseQueryString];
+                    if (![[params objectForKey:@"state"] isEqualToString:state]) {
+                        failure(nil, [NSError errorWithDomain:TCOAuthStateMismatchErrorDomain code:1 userInfo:@{ @"params": params }]);
+                        return;
+                    }
+
+                    // TODO: Token exchange
+                }];
+            }
+        }];
+    }];
+
+    // TODO: Open link in default browser on desktop
+}
 }
 
 #pragma mark - API Endpoints

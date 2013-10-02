@@ -17,6 +17,7 @@
 static NSString * const TCInvalidResponseCodeErrorDomain = @"Invalid Response Code";
 static NSString * const TCInvalidResponseBodyErrorDomain = @"Invalid Response Body";
 static NSString * const TCDiscoveryFailureErrorDomain = @"Discovery Failure";
+static NSString * const TCOAuthStateMismatchErrorDomain = @"OAuth state mismatch";
 
 @interface TentClient : NSObject
 
@@ -55,6 +56,7 @@ static NSString * const TCDiscoveryFailureErrorDomain = @"Discovery Failure";
  */
 - (void)authenticateWithApp:(TCAppPost *)appPost
                successBlock:(void (^)(TCAppPost *appPost, TCAuthPost *authPost))success
-               failureBlock:(void (^)(NSError *error))failure;
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+               viewController:(UIViewController *)controller;
 
 @end

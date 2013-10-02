@@ -27,6 +27,8 @@
 @property (nonatomic) NSNumber *preferenceIndex;
 
 - (NSURL *)oauthAuthURL;
+- (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID;
+- (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID state:(NSString *)state;
 - (NSURL *)oauthTokenURL;
 - (NSURL *)newPostURL;
 - (NSURL *)postAttachmentURLWithEntity:(NSString *)entity

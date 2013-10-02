@@ -30,6 +30,16 @@
     return [NSURL URLWithString:self.urlTemplateOAuthAuth];
 }
 
+- (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID {
+    NSString *encodedClientID = [clientID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [ NSURL URLWithString:[[[self oauthAuthURL] absoluteString] stringByAppendingString:[NSString stringWithFormat:@"?client_id=%@", encodedClientID]]];
+}
+
+- (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID state:(NSString *)state {
+    NSString *encodedState = [state stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return [ NSURL URLWithString:[[[self oauthAuthURLWithAppID:clientID] absoluteString] stringByAppendingString:[NSString stringWithFormat:@"&state=%@", encodedState]]];
+}
+
 - (NSURL *)oauthTokenURL {
     return [NSURL URLWithString:self.urlTemplateOAuthToken];
 }
