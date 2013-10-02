@@ -373,17 +373,23 @@
 
     auth.method = [request HTTPMethod];
 
-    auth.port = [request.URL port];
+    if ([[request.URL scheme] isEqualToString:@"https"]) {
+        auth.port = [NSNumber numberWithInteger:443];
+    } else if ([[request.URL scheme] isEqualToString:@"http"]) {
+        auth.port = [NSNumber numberWithInteger:80];
+    } else {
+        auth.port = [request.URL port];
+    }
 
     auth.host = [request.URL host];
 
-    auth.requestUri = [request.URL absoluteString];
+    auth.requestUri = [request.URL path];
 
     auth.nonce = [self randomStringOfLength:[NSNumber numberWithInt:6]];
 
     auth.timestamp = [[NSDate alloc] init];
 
-    NSString *authorizationHeader = [[auth requestHeader] substringFromIndex:14]; // Remove @"Authorization: " prefix
+    NSString *authorizationHeader = [[auth requestHeader] substringFromIndex:15]; // Remove @"Authorization: " prefix
 
     NSMutableURLRequest *authedRequest = (NSMutableURLRequest *)(request);
     [authedRequest addValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
