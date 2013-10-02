@@ -280,14 +280,74 @@
                         return;
                     }
 
-                    // TODO: Token exchange
+                    [self exchangeTokenForApp:appPost tokenCode:[params objectForKey:@"code"] successBlock:success failureBlock:failure];
                 }];
             }
         }];
     }];
 
+    // TODO: Add ability to close webview
+
     // TODO: Open link in default browser on desktop
 }
+
+- (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] oauthTokenURL]];
+    [request setHTTPMethod:@"POST"];
+
+    // Set request body
+    NSError *serializationError;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:@{ @"code": tokenCode, @"token_type": @"https://tent.io/oauth/hawk-token" } options:0 error:&serializationError];
+
+    if (serializationError) {
+        failure(nil, serializationError);
+        return;
+    }
+
+    [request setHTTPBody:requestData];
+
+    // Set Content-Type
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+
+    // Set Accept
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+
+    // Authenticate request using app credentials
+    TentClient *appClient = [TentClient clientWithEntity:self.entityURI];
+    appClient.metaPost = self.metaPost;
+    appClient.credentialsPost = appPost.credentialsPost;
+
+    NSURLRequest *authedRequest = [appClient authenticateRequest:request];
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:authedRequest];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error;
+        if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
+            failure(operation, error);
+            return;
+        }
+
+        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
+
+        if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
+            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:nil];
+            failure(operation, error);
+            return;
+        }
+
+        TCCredentialsPost *authCredentialsPost = [[TCCredentialsPost alloc] init];
+        authCredentialsPost.ID = [responseJSON objectForKey:@"access_token"];
+        authCredentialsPost.key = [responseJSON objectForKey:@"hawk_key"];
+        authCredentialsPost.algorithm = CryptoAlgorithmSHA256; // sha256 is currently the only supported algorithm
+
+        self.credentialsPost = authCredentialsPost;
+
+        success(appPost, nil);
+    } failure:failure];
+
+    [operation start];
 }
 
 #pragma mark - API Endpoints
