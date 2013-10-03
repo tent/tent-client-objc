@@ -1,16 +1,17 @@
 //
-//  NSURL+QueryStringEncoding.m
+//  NSURL+Extentions.m
 //  TentClient
 //
-//  Created by Jesse Stuart on 10/1/13.
+//  Created by Jesse Stuart on 10/3/13.
 //  Copyright (c) 2013 Tent.is, LLC. All rights reserved.
 //  Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
 //
 
-#import "NSURL+QueryStringEncoding.h"
+#import "NSURL+Extentions.h"
 #import "NSArray+Filtering.h"
+#import "NSString+Parser.h"
 
-@implementation NSURL (QueryStringEncoding)
+@implementation NSURL (Extentions)
 
 - (NSDictionary *)parseQueryString {
     NSMutableDictionary *extractedParams = [[NSMutableDictionary alloc] init];
@@ -25,6 +26,17 @@
     }
 
     return [NSDictionary dictionaryWithDictionary:extractedParams];
+}
+
+- (NSString *)encodedPath {
+    NSString *urlStr = [self absoluteString];
+    NSString *host = [self host];
+
+    NSNumber *hostIndex = [NSNumber numberWithInteger:[urlStr firstIndexOf:host]];
+
+    NSNumber *pathIndex = [NSNumber numberWithInteger:([hostIndex integerValue] + [host length])];
+
+    return [urlStr substringFromIndex:[pathIndex integerValue]];
 }
 
 @end

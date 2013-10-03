@@ -16,7 +16,7 @@
 #import "NSString+Parser.h"
 #import "HawkAuth.h"
 #import "WebViewController.h"
-#import "NSURL+QueryStringEncoding.h"
+#import "NSURL+Extentions.h"
 
 @implementation TentClient
 
@@ -498,7 +498,7 @@
 
     auth.host = [request.URL host];
 
-    auth.requestUri = [request.URL path];
+    auth.requestUri = [request.URL encodedPath];
 
     auth.nonce = [self randomStringOfLength:[NSNumber numberWithInt:6]];
 
