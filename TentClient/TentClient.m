@@ -249,6 +249,12 @@
 
         // Fetch app post
         return [appClient getPostWithEntity:[appPost.entityURI absoluteString] postID:appPost.ID successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
+            if  ([[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:404]]) {
+                // App post not found, create it!
+                appPost.ID = nil;
+                return [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
+            }
+
             NSError *error;
             if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
                 error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
