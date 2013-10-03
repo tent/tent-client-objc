@@ -503,7 +503,7 @@
 
     NSString *authorizationHeader = [[auth requestHeader] substringFromIndex:15]; // Remove @"Authorization: " prefix
 
-    NSMutableURLRequest *authedRequest = (NSMutableURLRequest *)(request);
+    NSMutableURLRequest *authedRequest = [request mutableCopy];
     [authedRequest addValue:authorizationHeader forHTTPHeaderField:@"Authorization"];
 
     return (NSURLRequest *)authedRequest;
