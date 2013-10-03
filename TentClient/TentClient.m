@@ -247,8 +247,13 @@
 
         NSLog(@"fetch app entityURI: %@, postID: %@", appPost.entityURI, appPost.ID);
 
+        // Authenticate using app credentials
+        TentClient *appClient = [TentClient clientWithEntity:appPost.entityURI];
+        appClient.metaPost = self.metaPost;
+        appClient.credentialsPost = appPost.credentialsPost;
+
         // Fetch app post
-        return [self getPostWithEntity:[appPost.entityURI absoluteString] postID:appPost.ID successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
+        return [appClient getPostWithEntity:[appPost.entityURI absoluteString] postID:appPost.ID successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
             NSError *error;
             if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
                 error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
