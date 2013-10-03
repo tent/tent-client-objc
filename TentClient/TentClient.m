@@ -256,7 +256,8 @@
                 return;
             }
 
-            // TODO: Fetch app credentials post
+            // Don't loose the credentials
+            ((TCAppPost *)post).credentialsPost = appPost.credentialsPost;
 
             [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
         } failureBlock:failure];
