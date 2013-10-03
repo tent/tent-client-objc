@@ -16,6 +16,8 @@
 
 @implementation TCPost
 
+#pragma mark - MTLJSONSerializing
+
 + (Class)classForParsingJSONDictionary:(NSDictionary *)JSONDictionary {
     if ([[JSONDictionary objectForKey:@"type"] hasPrefix:@"https://tent.io/types/meta/"]) {
         return [TCMetaPost class];
@@ -93,6 +95,8 @@
         return [entityURI absoluteString];
     }];
 }
+
+#pragma mark -
 
 - (id)init {
     self = [super init];

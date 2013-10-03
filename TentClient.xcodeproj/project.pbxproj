@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		168D43AB7B174EF1B2448255 /* libPods-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12A89620D27448589B6CC4AC /* libPods-ios.a */; };
+		88224B8017FCA8B100510BDA /* TCPost+CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */; };
+		88224B8117FCA8B100510BDA /* TCPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */; };
+		88224B8217FCA8B100510BDA /* TCPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */; };
+		88224B8517FCA93200510BDA /* TCAppPost+CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */; };
+		88224B8617FCA93200510BDA /* TCAppPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */; };
+		88224B8717FCA93200510BDA /* TCAppPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */; };
+		88224B8A17FCAB2D00510BDA /* TCCredentialsPost+CoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = 88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */; };
+		88224B8B17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */; };
+		88224B8C17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */; };
 		8878E1A817FB8A58007EDC3D /* WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8878E1A617FB8A58007EDC3D /* WebViewController.h */; };
 		8878E1A917FB8A58007EDC3D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1A717FB8A58007EDC3D /* WebViewController.m */; };
 		8878E1AA17FB8A58007EDC3D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1A717FB8A58007EDC3D /* WebViewController.m */; };
@@ -125,6 +134,12 @@
 		2892054395B7432990444A7F /* libPods-osx_10_9.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-osx_10_9.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E48D351B7EE416184ACCD98 /* Pods-osx_10_9.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-osx_10_9.xcconfig"; path = "Pods/Pods-osx_10_9.xcconfig"; sourceTree = SOURCE_ROOT; };
 		3D8F711D32E241C3A390117B /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "Pods/Pods-ios.xcconfig"; sourceTree = SOURCE_ROOT; };
+		88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCPost+CoreData.h"; sourceTree = "<group>"; };
+		88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCPost+CoreData.m"; sourceTree = "<group>"; };
+		88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCAppPost+CoreData.h"; sourceTree = "<group>"; };
+		88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCAppPost+CoreData.m"; sourceTree = "<group>"; };
+		88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TCCredentialsPost+CoreData.h"; sourceTree = "<group>"; };
+		88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCCredentialsPost+CoreData.m"; sourceTree = "<group>"; };
 		8878E1A617FB8A58007EDC3D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		8878E1A717FB8A58007EDC3D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8878E1AB17FB9B5F007EDC3D /* NSURL+QueryStringEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryStringEncoding.h"; sourceTree = "<group>"; };
@@ -260,12 +275,18 @@
 				88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */,
 				88C8133117F5F9480042CDD9 /* TCPost.h */,
 				88C8133217F5F9480042CDD9 /* TCPost.m */,
+				88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */,
+				88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */,
 				88C8136617F7334E0042CDD9 /* TCAppPost.h */,
 				88C8136717F7334E0042CDD9 /* TCAppPost.m */,
+				88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */,
+				88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */,
 				88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */,
 				88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */,
 				88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */,
 				88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */,
+				88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */,
+				88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */,
 				88C8135517F645450042CDD9 /* TCMetaPost.h */,
 				88C8135617F645450042CDD9 /* TCMetaPost.m */,
 				88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */,
@@ -357,8 +378,11 @@
 				88C8132717F5158B0042CDD9 /* HTMLLink.h in Headers */,
 				88B3BA7F17B6B2B6008FD26B /* TentClient.h in Headers */,
 				88C8137717F7584B0042CDD9 /* TCCredentialsPost.h in Headers */,
+				88224B8517FCA93200510BDA /* TCAppPost+CoreData.h in Headers */,
 				88C8134517F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h in Headers */,
+				88224B8017FCA8B100510BDA /* TCPost+CoreData.h in Headers */,
 				88C8134B17F6233D0042CDD9 /* NSDictionary+Filtering.h in Headers */,
+				88224B8A17FCAB2D00510BDA /* TCCredentialsPost+CoreData.h in Headers */,
 				88C8135117F640320042CDD9 /* NSArray+Filtering.h in Headers */,
 				88C8136E17F73A7E0042CDD9 /* TCAuthPost.h in Headers */,
 				88C8135D17F64A040042CDD9 /* TCMetaPostServer.h in Headers */,
@@ -585,9 +609,12 @@
 				88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135817F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134617F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
+				88224B8117FCA8B100510BDA /* TCPost+CoreData.m in Sources */,
 				8878E1A917FB8A58007EDC3D /* WebViewController.m in Sources */,
 				88B3BA3517B695A5008FD26B /* TentClient.m in Sources */,
+				88224B8B17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */,
 				88C8136917F7334E0042CDD9 /* TCAppPost.m in Sources */,
+				88224B8617FCA93200510BDA /* TCAppPost+CoreData.m in Sources */,
 				88C8134C17F6233D0042CDD9 /* NSDictionary+Filtering.m in Sources */,
 				88C8135E17F64A040042CDD9 /* TCMetaPostServer.m in Sources */,
 				88C8135217F640320042CDD9 /* NSArray+Filtering.m in Sources */,
@@ -614,9 +641,12 @@
 				88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135917F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134717F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
+				88224B8217FCA8B100510BDA /* TCPost+CoreData.m in Sources */,
 				8878E1AA17FB8A58007EDC3D /* WebViewController.m in Sources */,
 				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,
+				88224B8C17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */,
 				88C8136A17F7334E0042CDD9 /* TCAppPost.m in Sources */,
+				88224B8717FCA93200510BDA /* TCAppPost+CoreData.m in Sources */,
 				88C8134D17F6233D0042CDD9 /* NSDictionary+Filtering.m in Sources */,
 				88C8135F17F64A040042CDD9 /* TCMetaPostServer.m in Sources */,
 				88C8135317F640320042CDD9 /* NSArray+Filtering.m in Sources */,
