@@ -111,6 +111,7 @@
     [operation start];
 }
 
+// TODO: Refactor to use getPost instead
 - (void)fetchMetaPostWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
     if (!self.metaPostURL) {
         failure();
@@ -198,6 +199,7 @@
 #pragma mark - OAuth
 
 - (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
+
     // Ensure we have the meta post
     if (!self.metaPost) {
         return [self performDiscoveryWithSuccessBlock:^{
@@ -207,6 +209,8 @@
             failure(nil, error);
         }];
     }
+
+    NSLog(@"authenticateWithApp: %@", appPost.ID);
 
     // Create app post
     if (!appPost.ID) {
@@ -241,6 +245,8 @@
     if ([[[NSDate alloc] init] timeIntervalSince1970] - [appPost.clientReceivedAt timeIntervalSince1970] > 60) {
         // App post received by client more than a minute ago
 
+        NSLog(@"fetch app entityURI: %@, postID: %@", appPost.entityURI, appPost.ID);
+
         // Fetch app post
         return [self getPostWithEntity:[appPost.entityURI absoluteString] postID:appPost.ID successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
             NSError *error;
@@ -257,6 +263,8 @@
             [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
         } failureBlock:failure];
     }
+
+    NSLog(@"build oauth redirect URI");
 
     // Build OAuth redirect URI
     NSString *state = [self randomStringOfLength:[NSNumber numberWithInteger:32]];
@@ -319,6 +327,8 @@
 
     NSURLRequest *authedRequest = [appClient authenticateRequest:request];
 
+    NSLog(@"token exchange request headers: %@", [authedRequest allHTTPHeaderFields]);
+
     AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:authedRequest];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -341,6 +351,8 @@
         authCredentialsPost.ID = [responseJSON objectForKey:@"access_token"];
         authCredentialsPost.key = [responseJSON objectForKey:@"hawk_key"];
         authCredentialsPost.algorithm = CryptoAlgorithmSHA256; // sha256 is currently the only supported algorithm
+
+        NSLog(@"auth credentials: %@ for response: %@", authCredentialsPost, responseJSON);
 
         self.credentialsPost = authCredentialsPost;
 
@@ -407,6 +419,10 @@
 
 - (void)getPostWithEntity:(NSString *)entity postID:(NSString *)postID successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSURL *postURL = [[self.metaPost preferredServer] postURLWithEntity:entity postID:postID];
+
+    NSLog(@"entity encoded: %@", [entity stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]);
+    NSLog(@"metaPost pref server: %@", [self.metaPost preferredServer]);
+    NSLog(@"getPostFromURL: %@", [postURL absoluteString]);
 
     [self getPostFromURL:postURL successBlock:success failureBlock:failure];
 }

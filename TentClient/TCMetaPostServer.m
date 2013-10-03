@@ -8,6 +8,7 @@
 //
 
 #import "TCMetaPostServer.h"
+#import "NSString+URLEncode.h"
 
 @implementation TCMetaPostServer
 
@@ -31,12 +32,12 @@
 }
 
 - (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID {
-    NSString *encodedClientID = [clientID stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedClientID = [clientID stringByAddingURLPercentEncoding];
     return [ NSURL URLWithString:[[[self oauthAuthURL] absoluteString] stringByAppendingString:[NSString stringWithFormat:@"?client_id=%@", encodedClientID]]];
 }
 
 - (NSURL *)oauthAuthURLWithAppID:(NSString *)clientID state:(NSString *)state {
-    NSString *encodedState = [state stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *encodedState = [state stringByAddingURLPercentEncoding];
     return [ NSURL URLWithString:[[[self oauthAuthURLWithAppID:clientID] absoluteString] stringByAppendingString:[NSString stringWithFormat:@"&state=%@", encodedState]]];
 }
 
@@ -49,11 +50,11 @@
 }
 
 - (NSURL *)postAttachmentURLWithEntity:(NSString *)entity postID:(NSString *)post attachmentName:(NSString *)name {
-    return [NSURL URLWithString:[[[self.urlTemplatePostAttachment stringByReplacingOccurrencesOfString:@"{entity}" withString:entity]stringByReplacingOccurrencesOfString:@"{post}" withString:post] stringByReplacingOccurrencesOfString:@"{name}" withString:name]];
+    return [NSURL URLWithString:[[[self.urlTemplatePostAttachment stringByReplacingOccurrencesOfString:@"{entity}" withString:[entity stringByAddingURLPercentEncoding]]stringByReplacingOccurrencesOfString:@"{post}" withString:[post stringByAddingURLPercentEncoding]] stringByReplacingOccurrencesOfString:@"{name}" withString:[name stringByAddingURLPercentEncoding]]];
 }
 
 - (NSURL *)attachmentURLWithEntity:(NSString *)entity attachmentDigest:(NSString *)digest {
-    return [NSURL URLWithString:[[self.urlTemplateAttachment stringByReplacingOccurrencesOfString:@"{entity}" withString:entity] stringByReplacingOccurrencesOfString:@"{digest}" withString:digest]];
+    return [NSURL URLWithString:[[self.urlTemplateAttachment stringByReplacingOccurrencesOfString:@"{entity}" withString:[entity stringByAddingURLPercentEncoding]] stringByReplacingOccurrencesOfString:@"{digest}" withString:digest]];
 }
 
 - (NSURL *)batchURL {
@@ -65,7 +66,7 @@
 }
 
 - (NSURL *)postURLWithEntity:(NSString *)entity postID:(NSString *)post {
-    return [NSURL URLWithString:self.urlTemplatePost];
+    return [NSURL URLWithString:[[self.urlTemplatePost stringByReplacingOccurrencesOfString:@"{entity}" withString:[entity stringByAddingURLPercentEncoding]] stringByReplacingOccurrencesOfString:@"{post}" withString:[post stringByAddingURLPercentEncoding]]];
 }
 
 - (NSURL *)serverInfoURL {
