@@ -1,5 +1,5 @@
 //
-//  WebViewController.h
+//  TCWebViewController.h
 //  TentClient
 //
 //  Created by Jesse Stuart on 10/1/13.
@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate>
+@interface TCWebViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic) UIWebView *webView;
 

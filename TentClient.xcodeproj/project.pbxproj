@@ -20,10 +20,6 @@
 		88224BA417FDEE1100510BDA /* NSString+URLEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = 88224BA217FDEE1100510BDA /* NSString+URLEncode.h */; };
 		88224BA517FDEE1100510BDA /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224BA317FDEE1100510BDA /* NSString+URLEncode.m */; };
 		88224BA617FDEE1100510BDA /* NSString+URLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 88224BA317FDEE1100510BDA /* NSString+URLEncode.m */; };
-		8878E1A817FB8A58007EDC3D /* WebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8878E1A617FB8A58007EDC3D /* WebViewController.h */; };
-		8878E1A917FB8A58007EDC3D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1A717FB8A58007EDC3D /* WebViewController.m */; };
-		8878E1AA17FB8A58007EDC3D /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8878E1A717FB8A58007EDC3D /* WebViewController.m */; };
-		8878E1B017FBA50D007EDC3D /* WebViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8878E1A617FB8A58007EDC3D /* WebViewController.h */; };
 		8879A25317FE05FA00957A90 /* NSURL+Extentions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8879A25117FE05FA00957A90 /* NSURL+Extentions.h */; };
 		8879A25417FE05FA00957A90 /* NSURL+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25217FE05FA00957A90 /* NSURL+Extentions.m */; };
 		8879A25517FE05FA00957A90 /* NSURL+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25217FE05FA00957A90 /* NSURL+Extentions.m */; };
@@ -32,6 +28,10 @@
 		8879A25817FE075A00957A90 /* TCCredentialsPost+CoreData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */; };
 		8879A25917FE075A00957A90 /* NSURL+Extentions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8879A25117FE05FA00957A90 /* NSURL+Extentions.h */; };
 		8879A25A17FE075A00957A90 /* NSString+URLEncode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224BA217FDEE1100510BDA /* NSString+URLEncode.h */; };
+		8879A25D17FE3B8F00957A90 /* TCWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8879A25B17FE3B8F00957A90 /* TCWebViewController.h */; };
+		8879A25E17FE3B8F00957A90 /* TCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25C17FE3B8F00957A90 /* TCWebViewController.m */; };
+		8879A25F17FE3B8F00957A90 /* TCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25C17FE3B8F00957A90 /* TCWebViewController.m */; };
+		8879A26017FE3BF000957A90 /* TCWebViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8879A25B17FE3B8F00957A90 /* TCWebViewController.h */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
 		88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2317B695A5008FD26B /* TentClient.framework */; };
@@ -116,12 +116,12 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				8879A26017FE3BF000957A90 /* TCWebViewController.h in CopyFiles */,
 				8879A25617FE075A00957A90 /* TCPost+CoreData.h in CopyFiles */,
 				8879A25717FE075A00957A90 /* TCAppPost+CoreData.h in CopyFiles */,
 				8879A25817FE075A00957A90 /* TCCredentialsPost+CoreData.h in CopyFiles */,
 				8879A25917FE075A00957A90 /* NSURL+Extentions.h in CopyFiles */,
 				8879A25A17FE075A00957A90 /* NSString+URLEncode.h in CopyFiles */,
-				8878E1B017FBA50D007EDC3D /* WebViewController.h in CopyFiles */,
 				88C8137A17F758580042CDD9 /* TCCredentialsPost.h in CopyFiles */,
 				88C8137117F73A870042CDD9 /* TCAuthPost.h in CopyFiles */,
 				88C8136B17F733580042CDD9 /* TCAppPost.h in CopyFiles */,
@@ -153,10 +153,10 @@
 		88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TCCredentialsPost+CoreData.m"; sourceTree = "<group>"; };
 		88224BA217FDEE1100510BDA /* NSString+URLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncode.h"; sourceTree = "<group>"; };
 		88224BA317FDEE1100510BDA /* NSString+URLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncode.m"; sourceTree = "<group>"; };
-		8878E1A617FB8A58007EDC3D /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		8878E1A717FB8A58007EDC3D /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		8879A25117FE05FA00957A90 /* NSURL+Extentions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Extentions.h"; sourceTree = "<group>"; };
 		8879A25217FE05FA00957A90 /* NSURL+Extentions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Extentions.m"; sourceTree = "<group>"; };
+		8879A25B17FE3B8F00957A90 /* TCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWebViewController.h; sourceTree = "<group>"; };
+		8879A25C17FE3B8F00957A90 /* TCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWebViewController.m; sourceTree = "<group>"; };
 		88B3BA2317B695A5008FD26B /* TentClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TentClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B3BA2E17B695A5008FD26B /* TentClient-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TentClient-Info.plist"; sourceTree = "<group>"; };
 		88B3BA3017B695A5008FD26B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 			children = (
 				88B3BA3317B695A5008FD26B /* TentClient.h */,
 				88B3BA3417B695A5008FD26B /* TentClient.m */,
-				8878E1A617FB8A58007EDC3D /* WebViewController.h */,
-				8878E1A717FB8A58007EDC3D /* WebViewController.m */,
+				8879A25B17FE3B8F00957A90 /* TCWebViewController.h */,
+				8879A25C17FE3B8F00957A90 /* TCWebViewController.m */,
 				88C8132517F5158B0042CDD9 /* HTMLLink.h */,
 				88C8132617F5158B0042CDD9 /* HTMLLink.m */,
 				88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */,
@@ -403,7 +403,7 @@
 				88C8136E17F73A7E0042CDD9 /* TCAuthPost.h in Headers */,
 				88C8135D17F64A040042CDD9 /* TCMetaPostServer.h in Headers */,
 				88C8135717F645450042CDD9 /* TCMetaPost.h in Headers */,
-				8878E1A817FB8A58007EDC3D /* WebViewController.h in Headers */,
+				8879A25D17FE3B8F00957A90 /* TCWebViewController.h in Headers */,
 				88C8132017F4D4710042CDD9 /* HTTPLinkHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,11 +622,11 @@
 				88C8137817F7584B0042CDD9 /* TCCredentialsPost.m in Sources */,
 				88C8132117F4D4710042CDD9 /* HTTPLinkHeader.m in Sources */,
 				8879A25417FE05FA00957A90 /* NSURL+Extentions.m in Sources */,
+				8879A25E17FE3B8F00957A90 /* TCWebViewController.m in Sources */,
 				88C8132817F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135817F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134617F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
 				88224B8117FCA8B100510BDA /* TCPost+CoreData.m in Sources */,
-				8878E1A917FB8A58007EDC3D /* WebViewController.m in Sources */,
 				88B3BA3517B695A5008FD26B /* TentClient.m in Sources */,
 				88224B8B17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */,
 				88C8136917F7334E0042CDD9 /* TCAppPost.m in Sources */,
@@ -655,11 +655,11 @@
 				88C8137917F7584B0042CDD9 /* TCCredentialsPost.m in Sources */,
 				88C8132217F4F50C0042CDD9 /* HTTPLinkHeader.m in Sources */,
 				8879A25517FE05FA00957A90 /* NSURL+Extentions.m in Sources */,
+				8879A25F17FE3B8F00957A90 /* TCWebViewController.m in Sources */,
 				88C8132917F5158B0042CDD9 /* HTMLLink.m in Sources */,
 				88C8135917F645450042CDD9 /* TCMetaPost.m in Sources */,
 				88C8134717F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m in Sources */,
 				88224B8217FCA8B100510BDA /* TCPost+CoreData.m in Sources */,
-				8878E1AA17FB8A58007EDC3D /* WebViewController.m in Sources */,
 				88B3BA7917B69B9A008FD26B /* TentClient.m in Sources */,
 				88224B8C17FCAB2D00510BDA /* TCCredentialsPost+CoreData.m in Sources */,
 				88C8136A17F7334E0042CDD9 /* TCAppPost.m in Sources */,

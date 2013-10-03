@@ -1,5 +1,5 @@
 //
-//  WebViewController.m
+//  TCWebViewController.m
 //  TentClient
 //
 //  Created by Jesse Stuart on 10/1/13.
@@ -7,26 +7,17 @@
 //  Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
 //
 
-#import "WebViewController.h"
+#import "TCWebViewController.h"
 
-@interface WebViewController ()
+@interface TCWebViewController ()
 
 @end
 
-@implementation WebViewController
+@implementation TCWebViewController
 
 {
     id completionBlock;
     NSURLRequest *currentRequest;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
 }
 
 - (void)viewDidLoad
@@ -41,7 +32,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UIWebViewDelegate

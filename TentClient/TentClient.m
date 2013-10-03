@@ -15,7 +15,7 @@
 #import "NSJSONSerialization+ObjectCleanup.h"
 #import "NSString+Parser.h"
 #import "HawkAuth.h"
-#import "WebViewController.h"
+#import "TCWebViewController.h"
 #import "NSURL+Extentions.h"
 
 @implementation TentClient
@@ -306,7 +306,7 @@
     NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:appPost.ID state:state];
 
     // Open oauthRedirectURI in a UIWebView
-    WebViewController *webViewController = [[WebViewController alloc] init];
+    TCWebViewController *webViewController = [[TCWebViewController alloc] init];
 
     [controller presentViewController:webViewController animated:YES completion:^{
         [webViewController loadRequest:[NSURLRequest requestWithURL:oauthRedirectURI] withCompletionBlock:^(NSURLRequest *request) {
