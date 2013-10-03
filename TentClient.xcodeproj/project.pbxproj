@@ -27,7 +27,11 @@
 		8879A25317FE05FA00957A90 /* NSURL+Extentions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8879A25117FE05FA00957A90 /* NSURL+Extentions.h */; };
 		8879A25417FE05FA00957A90 /* NSURL+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25217FE05FA00957A90 /* NSURL+Extentions.m */; };
 		8879A25517FE05FA00957A90 /* NSURL+Extentions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A25217FE05FA00957A90 /* NSURL+Extentions.m */; };
+		8879A25617FE075A00957A90 /* TCPost+CoreData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */; };
+		8879A25717FE075A00957A90 /* TCAppPost+CoreData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */; };
+		8879A25817FE075A00957A90 /* TCCredentialsPost+CoreData.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */; };
 		8879A25917FE075A00957A90 /* NSURL+Extentions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8879A25117FE05FA00957A90 /* NSURL+Extentions.h */; };
+		8879A25A17FE075A00957A90 /* NSString+URLEncode.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88224BA217FDEE1100510BDA /* NSString+URLEncode.h */; };
 		88B3BA3117B695A5008FD26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88B3BA2F17B695A5008FD26B /* InfoPlist.strings */; };
 		88B3BA3517B695A5008FD26B /* TentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B3BA3417B695A5008FD26B /* TentClient.m */; };
 		88B3BA4017B695A5008FD26B /* TentClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88B3BA2317B695A5008FD26B /* TentClient.framework */; };
@@ -112,7 +116,11 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
+				8879A25617FE075A00957A90 /* TCPost+CoreData.h in CopyFiles */,
+				8879A25717FE075A00957A90 /* TCAppPost+CoreData.h in CopyFiles */,
+				8879A25817FE075A00957A90 /* TCCredentialsPost+CoreData.h in CopyFiles */,
 				8879A25917FE075A00957A90 /* NSURL+Extentions.h in CopyFiles */,
+				8879A25A17FE075A00957A90 /* NSString+URLEncode.h in CopyFiles */,
 				8878E1B017FBA50D007EDC3D /* WebViewController.h in CopyFiles */,
 				88C8137A17F758580042CDD9 /* TCCredentialsPost.h in CopyFiles */,
 				88C8137117F73A870042CDD9 /* TCAuthPost.h in CopyFiles */,
