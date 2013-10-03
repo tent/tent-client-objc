@@ -238,6 +238,38 @@
         } failureBlock:failure];
     }
 
+    // Don't bother authenticating if we already have working auth credentials
+    if (appPost.authCredentialsPost) {
+        self.credentialsPost = appPost.authCredentialsPost;
+
+        if ([[[NSDate alloc] init] timeIntervalSince1970] - [appPost.clientReceivedAt timeIntervalSince1970] > 60) {
+            // App post received by client more than a minute ago
+            // Ensure auth credentials work and app exists
+
+            return [self getPostWithEntity:[appPost.entityURI absoluteString] postID:appPost.ID successBlock:^(AFHTTPRequestOperation *operation, TCPost *post) {
+                if  ([[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:404]]) {
+                    // App post not found, create it!
+                    appPost.ID = nil;
+                    return [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
+                }
+
+                NSError *error;
+                if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
+                    error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:nil];
+                    failure(operation, error);
+                    return;
+                }
+
+                // Don't loose the credentials
+                ((TCAppPost *)post).credentialsPost = appPost.credentialsPost;
+
+                return success((TCAppPost *)post, ((TCAppPost *)post).authCredentialsPost);
+            } failureBlock:failure];
+        } else {
+            return success(appPost, appPost.authCredentialsPost);
+        }
+    }
+
     // Ensure app post exists
     if ([[[NSDate alloc] init] timeIntervalSince1970] - [appPost.clientReceivedAt timeIntervalSince1970] > 60) {
         // App post received by client more than a minute ago
