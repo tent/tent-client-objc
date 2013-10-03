@@ -23,5 +23,6 @@
 @property (nonatomic) NSArray *scopes;
 
 @property (nonatomic) TCCredentialsPost *credentialsPost;
+@property (nonatomic) TCCredentialsPost *authCredentialsPost;
 
 @end

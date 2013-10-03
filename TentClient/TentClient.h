@@ -57,7 +57,7 @@ static NSString * const TCInvalidLinkHeaderErrorDomain = @"Invalid Link Header";
  - Calls success or failure block
  */
 - (void)authenticateWithApp:(TCAppPost *)appPost
-               successBlock:(void (^)(TCAppPost *appPost, TCAuthPost *authPost))success
+               successBlock:(void (^)(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost))success
                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
                viewController:(UIViewController *)controller;
 

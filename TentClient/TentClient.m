@@ -198,7 +198,7 @@
 
 #pragma mark - OAuth
 
-- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
+- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
 
     // Ensure we have the meta post
     if (!self.metaPost) {
@@ -302,7 +302,7 @@
     // TODO: Open link in default browser on desktop
 }
 
-- (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode successBlock:(void (^)(TCAppPost *, TCAuthPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+- (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] oauthTokenURL]];
     [request setHTTPMethod:@"POST"];
 
@@ -355,7 +355,9 @@
 
         self.credentialsPost = authCredentialsPost;
 
-        success(appPost, nil);
+        appPost.authCredentialsPost = authCredentialsPost;
+
+        success(appPost, authCredentialsPost);
     } failure:failure];
 
     [operation start];

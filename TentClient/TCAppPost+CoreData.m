@@ -53,7 +53,8 @@
 
 + (NSDictionary *)relationshipModelClassesByPropertyKey {
     return @{
-             @"credentialsPost": TCCredentialsPost.class
+             @"credentialsPost": TCCredentialsPost.class,
+             @"authCredentialsPost": TCCredentialsPost.class
              };
 }
 
@@ -91,5 +92,6 @@
 @dynamic versionReceivedAt;
 @dynamic writeTypes;
 @dynamic credentialsPost;
+@dynamic authCredentialsPost;
 
 @end

@@ -48,5 +48,6 @@
 @property (nonatomic, retain) NSString * url;
 
 @property (nonatomic, retain) TCCredentialsPostManagedObject *credentialsPost;
+@property (nonatomic, retain) TCCredentialsPostManagedObject *authCredentialsPost;
 
 @end
