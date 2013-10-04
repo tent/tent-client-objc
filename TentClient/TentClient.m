@@ -30,35 +30,23 @@
 
 #pragma mark - Discovery
 
-- (void)performDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
-    [self performHEADDiscoveryWithSuccessBlock:^{
-        [self fetchMetaPostWithSuccessBlock:^{
-            // Successfully fetched meta post
-            success();
-        } failureBlock:^{
-            // Failed to fetch meta post
-            failure();
-        }];
-    } failureBlock:^{
+- (void)performDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+    [self performHEADDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation){
+        // HEAD discovery success
+
+        [self fetchMetaPostWithSuccessBlock:success failureBlock:failure];
+    } failureBlock:^(AFHTTPRequestOperation *operation, NSError *error){
         // HEAD discovery failed
 
-        [self performGETDiscoveryWithSuccessBlock:^{
-            [self fetchMetaPostWithSuccessBlock:^{
-                // Successfully fetched meta post
-                success();
-            } failureBlock:^{
-                // Failed to fetch meta post
-                failure();
-            }];
-        } failureBlock:^{
-            // GET discovery failed
+        [self performGETDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation){
+            // GET discovery success
 
-            failure();
-        }];
+            [self fetchMetaPostWithSuccessBlock:success failureBlock:failure];
+        } failureBlock:failure];
     }];
 }
 
-- (void)performHEADDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
+- (void)performHEADDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:self.entityURI];
     [request setHTTPMethod: @"HEAD"];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -72,21 +60,19 @@
         HTTPLinkHeader *metaPostLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/meta-post" fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
-            failure();
+            failure(operation, [[NSError alloc] initWithDomain:TCInvalidMetaPostLinkErrorDomain code:1 userInfo:@{ @"link": linkHeader }]);
             return;
         }
 
         self.metaPostURL = metaPostLink.URL;
 
-        success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure();
-    }];
+        success(operation);
+    } failure:failure];
     
     [operation start];
 }
 
-- (void)performGETDiscoveryWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
+- (void)performGETDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     NSURLRequest *request = [NSURLRequest requestWithURL:self.entityURI];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
@@ -97,24 +83,22 @@
         HTMLLink *metaPostLink = [self parseHTMLLink:operation.responseString fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
-            failure();
+            failure(operation, [[NSError alloc] initWithDomain:TCInvalidMetaPostLinkErrorDomain code:1 userInfo:@{ @"link": metaPostLink }]);
             return;
         }
 
         self.metaPostURL = metaPostLink.URL;
 
-        success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure();
-    }];
+        success(operation);
+    } failure:failure];
     
     [operation start];
 }
 
 // TODO: Refactor to use getPost instead
-- (void)fetchMetaPostWithSuccessBlock:(void (^)())success failureBlock:(void (^)())failure {
+- (void)fetchMetaPostWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     if (!self.metaPostURL) {
-        failure();
+        failure(nil, [[NSError alloc] initWithDomain:TCInvalidMetaPostURLErrorDomain code:1 userInfo:nil]);
         return;
     }
 
@@ -123,7 +107,7 @@
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         if (!operation.response.statusCode == 200) {
-            failure();
+            failure(operation, [[NSError alloc] initWithDomain:TCInvalidResponseCodeErrorDomain code:1 userInfo:nil]);
             return;
         }
 
@@ -131,7 +115,7 @@
 
         if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
             // Expected an NSMutableDictionary
-            failure();
+            failure(operation, [[NSError alloc] initWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:nil]);
             return;
         }
 
@@ -139,17 +123,15 @@
         self.metaPost = [MTLJSONAdapter modelOfClass:[TCPost class] fromJSONDictionary:[responseJSON objectForKey:@"post"] error:&error];
 
         if (error) {
-            failure();
+            failure(operation, error);
 
             NSLog(@"failed deserialize TCPost: %@", error);
 
             return;
         }
 
-        success();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure();
-    }];
+        success(operation);
+    } failure:failure];
 
     [operation start];
 }
@@ -202,12 +184,9 @@
 
     // Ensure we have the meta post
     if (!self.metaPost) {
-        return [self performDiscoveryWithSuccessBlock:^{
+        return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation){
             [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
-        } failureBlock:^{
-            NSError *error = [NSError errorWithDomain:TCDiscoveryFailureErrorDomain code:1 userInfo:nil];
-            failure(nil, error);
-        }];
+        } failureBlock:failure];
     }
 
     // Create app post

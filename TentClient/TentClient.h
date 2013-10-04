@@ -21,6 +21,8 @@ static NSString * const TCOAuthStateMismatchErrorDomain = @"OAuth State Mismatch
 static NSString * const TCOAuthErrorErrorDomain = @"OAuth Error";
 static NSString * const TCInvalidLinkHeaderErrorDomain = @"Invalid Link Header";
 static NSString * const TCOAuthUserAbortErrorDomain = @"OAuth User Abort";
+static NSString * const TCInvalidMetaPostURLErrorDomain = @"Invalid Meta Post URL";
+static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post Link";
 
 @interface TentClient : NSObject
 
@@ -36,17 +38,17 @@ static NSString * const TCOAuthUserAbortErrorDomain = @"OAuth User Abort";
 
 #pragma mark - Discovery
 
-- (void)performDiscoveryWithSuccessBlock:(void (^)())success
-                            failureBlock:(void (^)())failure;
+- (void)performDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation))success
+                            failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-- (void)performHEADDiscoveryWithSuccessBlock:(void (^)())success
-                                failureBlock:(void (^)())failure;
+- (void)performHEADDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation))success
+                                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-- (void)performGETDiscoveryWithSuccessBlock:(void (^)())success
-                               failureBlock:(void (^)())failure;
+- (void)performGETDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation))success
+                               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-- (void)fetchMetaPostWithSuccessBlock:(void (^)())success
-                         failureBlock:(void (^)())failure;
+- (void)fetchMetaPostWithSuccessBlock:(void (^)(AFHTTPRequestOperation *operation))success
+                         failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 #pragma mark - OAuth
 
