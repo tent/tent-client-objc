@@ -12,7 +12,13 @@
 @interface TCWebViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic) UIWebView *webView;
+@property (nonatomic) UIViewController *parentController;
 
-- (void)loadRequest:(NSURLRequest *)request withCompletionBlock:(void (^)(NSURLRequest *))completion;
++ (instancetype)webViewControllerWithParentController:(UIViewController *)controller;
 
+- (void)presentAnimated:(BOOL)flag completion:(void (^)(void))completion;
+
+- (void)dismissAnimated:(BOOL)flag completion:(void (^)(void))completion;
+
+- (void)loadRequest:(NSURLRequest *)request withCompletionBlock:(void (^)(NSURLRequest *))completion abortBlock:(void (^)())abort;
 @end

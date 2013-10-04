@@ -306,12 +306,12 @@
     NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:appPost.ID state:state];
 
     // Open oauthRedirectURI in a UIWebView
-    TCWebViewController *webViewController = [[TCWebViewController alloc] init];
+    TCWebViewController *webViewController = [TCWebViewController webViewControllerWithParentController:controller];
 
-    [controller presentViewController:webViewController animated:YES completion:^{
+    [webViewController presentAnimated:YES completion:^{
         [webViewController loadRequest:[NSURLRequest requestWithURL:oauthRedirectURI] withCompletionBlock:^(NSURLRequest *request) {
             if ([[request.URL absoluteString] hasPrefix:[appPost.redirectURI absoluteString]]) {
-                [controller dismissViewControllerAnimated:YES completion:^{
+                [webViewController dismissAnimated:YES completion:^{
                     NSDictionary *params = [request.URL parseQueryString];
                     if (![[params objectForKey:@"state"] isEqualToString:state]) {
                         failure(nil, [NSError errorWithDomain:TCOAuthStateMismatchErrorDomain code:1 userInfo:@{ @"params": params }]);
@@ -326,6 +326,8 @@
                     [self exchangeTokenForApp:appPost tokenCode:[params objectForKey:@"code"] successBlock:success failureBlock:failure];
                 }];
             }
+        } abortBlock:^{
+            failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
         }];
     }];
 

@@ -20,6 +20,7 @@ static NSString * const TCDiscoveryFailureErrorDomain = @"Discovery Failure";
 static NSString * const TCOAuthStateMismatchErrorDomain = @"OAuth State Mismatch";
 static NSString * const TCOAuthErrorErrorDomain = @"OAuth Error";
 static NSString * const TCInvalidLinkHeaderErrorDomain = @"Invalid Link Header";
+static NSString * const TCOAuthUserAbortErrorDomain = @"OAuth User Abort";
 
 @interface TentClient : NSObject
 

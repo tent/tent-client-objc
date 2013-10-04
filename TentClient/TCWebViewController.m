@@ -17,7 +17,36 @@
 
 {
     id completionBlock;
+    id userAbortBlock;
+
+    BOOL animated;
+
     NSURLRequest *currentRequest;
+
+    UINavigationController *navigationController;
+}
+
++ (instancetype)webViewControllerWithParentController:(UIViewController *)controller {
+    TCWebViewController *webViewController = [[TCWebViewController alloc] init];
+
+    webViewController.parentController = controller;
+
+    return webViewController;
+}
+
+- (id)init {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+
+    navigationController = [[UINavigationController alloc] initWithRootViewController:self];
+
+    [self setTitle:@"Authenticate"];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(userAbortButtonPressed:)];
+
+    return self;
 }
 
 - (void)viewDidLoad
@@ -52,10 +81,26 @@
 
 #pragma mark -
 
-- (void)loadRequest:(NSURLRequest *)request withCompletionBlock:(void (^)(NSURLRequest *))completion {
+- (void)presentAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    animated = flag;
+    [self.parentController presentViewController:navigationController animated:flag completion:completion];
+}
+
+- (void)dismissAnimated:(BOOL)flag completion:(void (^)(void))completion {
+    [self.parentController dismissViewControllerAnimated:flag completion:completion];
+}
+
+- (void)loadRequest:(NSURLRequest *)request withCompletionBlock:(void (^)(NSURLRequest *))completion abortBlock:(void (^)())abort {
     completionBlock = completion;
+    userAbortBlock = abort;
 
     [self.webView loadRequest:request];
+}
+
+- (void)userAbortButtonPressed:(id)sender {
+    [self dismissAnimated:animated completion:^{
+        ((void (^)())self->userAbortBlock)();
+    }];
 }
 
 @end
