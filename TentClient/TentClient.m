@@ -319,7 +319,12 @@
                     }
 
                     if ([params objectForKey:@"error"]) {
-                        failure(nil, [NSError errorWithDomain:TCOAuthErrorErrorDomain code:1 userInfo:@{ @"params": params }]);
+                        if ([[params objectForKey:@"error"] isEqualToString:@"user_abort"]) {
+                            failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
+                        } else {
+                            failure(nil, [NSError errorWithDomain:TCOAuthErrorErrorDomain code:1 userInfo:@{ @"params": params }]);
+                        }
+
                         return;
                     }
 
