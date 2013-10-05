@@ -23,8 +23,21 @@
              @"urlTemplatePostsFeed": @"urls.posts_feed",
              @"urlTemplatePost": @"urls.post",
              @"urlTemplateServerInfo": @"urls.server_info",
-             @"urlTemplateDiscover": @"urls.discover"
+             @"urlTemplateDiscover": @"urls.discover",
+             @"protocolVersion": @"version",
+             @"preferenceIndex": @"preference"
            };
+}
+
++ (NSValueTransformer *)perferenceIndexJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *indexStr) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
+        return [formatter numberFromString:indexStr];
+    } reverseBlock:^id(NSNumber *index) {
+        return [NSString stringWithFormat:@"%d", [index integerValue]];
+    }];
 }
 
 - (NSURL *)oauthAuthURL {
