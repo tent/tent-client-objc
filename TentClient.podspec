@@ -13,6 +13,8 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Classes/**/*.{h,m}'
 
+  s.preserve_paths = 'Resources', 'Support'
+
   s.dependency 'Hawk'
   s.dependency 'AFNetworking', '2.0.0'
   s.dependency 'Mantle', '1.3'
