@@ -32,20 +32,24 @@
     return [NSDictionary dictionaryWithDictionary:mapping];
 }
 
-+ (NSValueTransformer *)profileWebsiteJSONTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *urlStr) {
-        if (!urlStr) {
-            return urlStr;
-        }
++ (NSValueTransformer *)JSONTransformerForKey:(NSString *)key {
+    if ([@[@"profileWebsite", @"metaEntityURI"] containsObject:key]) {
+        return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *urlStr) {
+            if (!urlStr) {
+                return NSNull.null;
+            }
 
-        return [NSURL URLWithString:urlStr];
-    } reverseBlock:^id(NSURL *url) {
-        if (!url) {
-            return url;
-        }
+            return [NSURL URLWithString:urlStr];
+        } reverseBlock:^id(NSURL *url) {
+            if (!url) {
+                return NSNull.null;
+            }
 
-        return [url absoluteString];
-    }];
+            return [url absoluteString];
+        }];
+    }
+
+    return [super JSONTransformerForKey:key];
 }
 
 + (NSValueTransformer *)serversJSONTransformer {
