@@ -29,17 +29,6 @@
            };
 }
 
-+ (NSValueTransformer *)perferenceIndexJSONTransformer {
-    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *indexStr) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-
-        return [formatter numberFromString:indexStr];
-    } reverseBlock:^id(NSNumber *index) {
-        return [NSString stringWithFormat:@"%d", [index integerValue]];
-    }];
-}
-
 - (NSURL *)oauthAuthURL {
     return [NSURL URLWithString:self.urlTemplateOAuthAuth];
 }
