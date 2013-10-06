@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.9'
 
-  s.source_files = 'TentClient/**/*.{h,m}'
+  s.source_files = 'Classes/**/*.{h,m}'
 
   s.dependency 'Hawk'
   s.dependency 'AFNetworking', '2.0.0'
