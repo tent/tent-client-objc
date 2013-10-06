@@ -64,4 +64,30 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
                viewController:(UIViewController *)controller;
 
+- (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode
+               successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+#pragma mark - API Endpoints
+
+// new_post
+
+- (void)newPost:(TCPost *)post
+   successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success
+   failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+// post
+
+- (void)getPostWithEntity:(NSString *)entity postID:(NSString *)postID
+             successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success
+             failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)getPostFromURL:(NSURL *)postURL
+          successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success
+          failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+#pragma mark - Authentication
+
+- (NSURLRequest *)authenticateRequest:(NSURLRequest *)request;
+
 @end
