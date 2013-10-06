@@ -251,6 +251,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8879A2731801C00B00957A90 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */,
+				88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */,
+				88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */,
+				88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */,
+				88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */,
+				88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */,
+				8879A26918007EA100957A90 /* TCMetaPost+CoreData.h */,
+				8879A26A18007EA100957A90 /* TCMetaPost+CoreData.m */,
+				8879A26E18008A9900957A90 /* TCMetaPostServer+CoreData.h */,
+				8879A26F18008A9900957A90 /* TCMetaPostServer+CoreData.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
+		8879A2741801C02800957A90 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				88C8133117F5F9480042CDD9 /* TCPost.h */,
+				88C8133217F5F9480042CDD9 /* TCPost.m */,
+				88C8136617F7334E0042CDD9 /* TCAppPost.h */,
+				88C8136717F7334E0042CDD9 /* TCAppPost.m */,
+				88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */,
+				88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */,
+				88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */,
+				88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */,
+				88C8135517F645450042CDD9 /* TCMetaPost.h */,
+				88C8135617F645450042CDD9 /* TCMetaPost.m */,
+				88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */,
+				88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8879A2751801C03800957A90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				88C8134317F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h */,
+				88C8134417F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m */,
+				88C8134F17F640320042CDD9 /* NSArray+Filtering.h */,
+				88C8135017F640320042CDD9 /* NSArray+Filtering.m */,
+				88C8134917F6233D0042CDD9 /* NSDictionary+Filtering.h */,
+				88C8134A17F6233D0042CDD9 /* NSDictionary+Filtering.m */,
+				8879A25117FE05FA00957A90 /* NSURL+Extentions.h */,
+				8879A25217FE05FA00957A90 /* NSURL+Extentions.m */,
+				88224BA217FDEE1100510BDA /* NSString+URLEncode.h */,
+				88224BA317FDEE1100510BDA /* NSString+URLEncode.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		88B3BA1917B695A5008FD26B = {
 			isa = PBXGroup;
 			children = (
@@ -300,38 +353,9 @@
 				88C8132617F5158B0042CDD9 /* HTMLLink.m */,
 				88C8131E17F4D4710042CDD9 /* HTTPLinkHeader.h */,
 				88C8131F17F4D4710042CDD9 /* HTTPLinkHeader.m */,
-				88C8133117F5F9480042CDD9 /* TCPost.h */,
-				88C8133217F5F9480042CDD9 /* TCPost.m */,
-				88224B7E17FCA8B100510BDA /* TCPost+CoreData.h */,
-				88224B7F17FCA8B100510BDA /* TCPost+CoreData.m */,
-				88C8136617F7334E0042CDD9 /* TCAppPost.h */,
-				88C8136717F7334E0042CDD9 /* TCAppPost.m */,
-				88224B8317FCA93200510BDA /* TCAppPost+CoreData.h */,
-				88224B8417FCA93200510BDA /* TCAppPost+CoreData.m */,
-				88C8136C17F73A7E0042CDD9 /* TCAuthPost.h */,
-				88C8136D17F73A7E0042CDD9 /* TCAuthPost.m */,
-				88C8137517F7584B0042CDD9 /* TCCredentialsPost.h */,
-				88C8137617F7584B0042CDD9 /* TCCredentialsPost.m */,
-				88224B8817FCAB2D00510BDA /* TCCredentialsPost+CoreData.h */,
-				88224B8917FCAB2D00510BDA /* TCCredentialsPost+CoreData.m */,
-				88C8135517F645450042CDD9 /* TCMetaPost.h */,
-				88C8135617F645450042CDD9 /* TCMetaPost.m */,
-				8879A26918007EA100957A90 /* TCMetaPost+CoreData.h */,
-				8879A26A18007EA100957A90 /* TCMetaPost+CoreData.m */,
-				88C8135B17F64A040042CDD9 /* TCMetaPostServer.h */,
-				88C8135C17F64A040042CDD9 /* TCMetaPostServer.m */,
-				8879A26E18008A9900957A90 /* TCMetaPostServer+CoreData.h */,
-				8879A26F18008A9900957A90 /* TCMetaPostServer+CoreData.m */,
-				88C8134317F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.h */,
-				88C8134417F621010042CDD9 /* NSJSONSerialization+ObjectCleanup.m */,
-				88C8134F17F640320042CDD9 /* NSArray+Filtering.h */,
-				88C8135017F640320042CDD9 /* NSArray+Filtering.m */,
-				88C8134917F6233D0042CDD9 /* NSDictionary+Filtering.h */,
-				88C8134A17F6233D0042CDD9 /* NSDictionary+Filtering.m */,
-				8879A25117FE05FA00957A90 /* NSURL+Extentions.h */,
-				8879A25217FE05FA00957A90 /* NSURL+Extentions.m */,
-				88224BA217FDEE1100510BDA /* NSString+URLEncode.h */,
-				88224BA317FDEE1100510BDA /* NSString+URLEncode.m */,
+				8879A2741801C02800957A90 /* Models */,
+				8879A2731801C00B00957A90 /* CoreData */,
+				8879A2751801C03800957A90 /* Extensions */,
 				88B3BA2D17B695A5008FD26B /* Supporting Files */,
 			);
 			path = TentClient;
