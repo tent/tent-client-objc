@@ -10,8 +10,7 @@
 #import "TentClient.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFURLResponseSerialization.h"
-#import "HTTPLinkHeader.h"
-#import "HTMLLink.h"
+#import "TCLink.h"
 #import "NSJSONSerialization+ObjectCleanup.h"
 #import "NSString+Parser.h"
 #import "HawkAuth.h"
@@ -57,7 +56,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSString *linkHeader = [[operation.response allHeaderFields] valueForKey:@"Link"];
 
-        HTTPLinkHeader *metaPostLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/meta-post" fromURL:[operation.response valueForKey:@"URL"]];
+        TCLink *metaPostLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/meta-post" fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
             failure(operation, [[NSError alloc] initWithDomain:TCInvalidMetaPostLinkErrorDomain code:1 userInfo:@{ @"link": linkHeader }]);
@@ -80,7 +79,7 @@
     operation.shouldUseCredentialStorage = NO;
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
-        HTMLLink *metaPostLink = [self parseHTMLLink:operation.responseString fromURL:[operation.response valueForKey:@"URL"]];
+        TCLink *metaPostLink = [self parseHTMLLink:operation.responseString fromURL:[operation.response valueForKey:@"URL"]];
 
         if (!metaPostLink) {
             failure(operation, [[NSError alloc] initWithDomain:TCInvalidMetaPostLinkErrorDomain code:1 userInfo:@{ @"link": metaPostLink }]);
@@ -136,19 +135,19 @@
     [operation start];
 }
 
-- (HTTPLinkHeader *)parseLinkHeader:(NSString *)linkHeader matchingRel:(NSString *)rel fromURL:(NSURL *)originURL {
-    NSArray *links = [HTTPLinkHeader parseLinks:linkHeader];
+- (TCLink *)parseLinkHeader:(NSString *)linkHeader matchingRel:(NSString *)rel fromURL:(NSURL *)originURL {
+    NSArray *links = [TCLink parseHTTPLinkHeader:linkHeader];
 
     NSUInteger index = [links indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        HTTPLinkHeader * link = obj;
-        return [[link.attribtues valueForKey:@"rel"] isEqualToString:rel];
+        TCLink * link = obj;
+        return [[link.attributes valueForKey:@"rel"] isEqualToString:rel];
     }];
 
     if (index == NSNotFound) {
         return NULL;
     }
 
-    HTTPLinkHeader *metaPostLink = [links objectAtIndex:index];
+    TCLink *metaPostLink = [links objectAtIndex:index];
 
     if (!metaPostLink.URL.scheme) {
         metaPostLink.URL = [NSURL URLWithString:[metaPostLink.URL absoluteString] relativeToURL:originURL];
@@ -157,19 +156,19 @@
     return metaPostLink;
 }
 
-- (HTMLLink *)parseHTMLLink:(NSString *)htmlString fromURL:(NSURL *)originURL {
-    NSArray *links = [HTMLLink parseLinks:htmlString];
+- (TCLink *)parseHTMLLink:(NSString *)htmlString fromURL:(NSURL *)originURL {
+    NSArray *links = [TCLink parseHTMLLinkTagsFromHTML:htmlString];
 
     NSUInteger index = [links indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        HTMLLink * link = obj;
-        return [[link.attribtues valueForKey:@"rel"] isEqualToString:@"https://tent.io/rels/meta-post"];
+        TCLink * link = obj;
+        return [[link.attributes valueForKey:@"rel"] isEqualToString:@"https://tent.io/rels/meta-post"];
     }];
 
     if (index == NSNotFound) {
         return NULL;
     }
 
-    HTMLLink *metaPostLink = [links objectAtIndex:index];
+    TCLink *metaPostLink = [links objectAtIndex:index];
 
     if (!metaPostLink.URL.scheme) {
         metaPostLink.URL = [NSURL URLWithString:[metaPostLink.URL absoluteString] relativeToURL:originURL];
@@ -202,7 +201,7 @@
             // Fetch linked credentials post
             NSString *linkHeader = [[operation.response allHeaderFields] valueForKey:@"Link"];
 
-            HTTPLinkHeader *appCredentialsLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/credentials" fromURL:[operation.response valueForKey:@"URL"]];
+            TCLink *appCredentialsLink = [self parseLinkHeader:linkHeader matchingRel:@"https://tent.io/rels/credentials" fromURL:[operation.response valueForKey:@"URL"]];
 
             if (!appCredentialsLink) {
                 error = [NSError errorWithDomain:TCInvalidLinkHeaderErrorDomain code:1 userInfo:nil];
