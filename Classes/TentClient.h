@@ -13,6 +13,8 @@
 #import "TCAppPost.h"
 #import "TCAuthPost.h"
 #import "AFHTTPRequestOperation.h"
+#import "TCParams.h"
+#import "TCResponseEnvelope.h"
 
 static NSString * const TCInvalidResponseCodeErrorDomain = @"Invalid Response Code";
 static NSString * const TCInvalidResponseBodyErrorDomain = @"Invalid Response Body";
@@ -85,6 +87,16 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
 - (void)getPostFromURL:(NSURL *)postURL
           successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success
           failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+// posts_feed
+
+- (void)postsFeedWithParams:(TCParams *)params
+               successBlock:(void (^)(AFHTTPRequestOperation *operation, TCResponseEnvelope *responseEnvelope))success
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)postsFeedWithURL:(NSURL *)postsFeedURL
+            successBlock:(void (^)(AFHTTPRequestOperation *, TCResponseEnvelope *))success
+            failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure;
 
 #pragma mark - Authentication
 

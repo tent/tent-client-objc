@@ -16,6 +16,8 @@
 #import "HawkAuth.h"
 #import "TCWebViewController.h"
 #import "NSURL+Extentions.h"
+#import "NSString+URLEncode.h"
+#import "NSString+Parser.h"
 
 @implementation TentClient
 
@@ -480,6 +482,65 @@
         }
 
         success(operation, _post);
+    } failure:failure];
+
+    [operation start];
+}
+
+- (void)postsFeedWithParams:(TCParams *)params successBlock:(void (^)(AFHTTPRequestOperation *, TCResponseEnvelope *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+    if (!self.metaPost) {
+        return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation) {
+            [self postsFeedWithParams:params successBlock:success failureBlock:failure];
+        } failureBlock:failure];
+    }
+
+    NSURL *postsFeedURL = [[self.metaPost preferredServer] postsFeedURL];
+
+    NSString *queryString = [@"?" stringByAppendingString:[params urlEncodeParams]];
+
+    NSURL *postsFeedURLWithParams = [NSURL URLWithString:[[postsFeedURL absoluteString] stringByAppendingString:queryString]];
+
+    [self postsFeedWithURL:postsFeedURLWithParams successBlock:success failureBlock:failure];
+}
+
+- (void)postsFeedWithURL:(NSURL *)postsFeedURL successBlock:(void (^)(AFHTTPRequestOperation *, TCResponseEnvelope *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+    NSURLRequest *request;
+
+    if (![[postsFeedURL parameterString] firstIndexOf:@"bewit="]) {
+        // Request does not use bewit authentication
+        // Add authorization header
+
+        request = [self authenticateRequest:[NSURLRequest requestWithURL:postsFeedURL]];
+    } else {
+        request = [NSURLRequest requestWithURL:postsFeedURL];
+    }
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
+        NSError *error;
+        if (!operation.response.statusCode == 200) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        id responseJSON = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingMutableContainers error:nil];
+
+        if (![responseJSON isKindOfClass:[NSMutableDictionary class]]) {
+            error = [NSError errorWithDomain:TCInvalidResponseBodyErrorDomain code:1 userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        TCResponseEnvelope *responseEnvelope = [TCResponseEnvelope responseEnvelopeWithJSONDictionary:responseJSON requestURL:operation.request.URL];
+
+        if (responseEnvelope.error) {
+            failure(operation, responseEnvelope.error);
+            return;
+        }
+
+        success(operation, responseEnvelope);
     } failure:failure];
 
     [operation start];
