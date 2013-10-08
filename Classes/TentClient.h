@@ -36,6 +36,8 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
 
 @property (nonatomic) TCCredentialsPost *credentialsPost;
 
+@property (nonatomic) NSOperationQueue *operationQueue;
+
 + (instancetype)clientWithEntity:(NSURL *)entityURI;
 
 #pragma mark - Discovery

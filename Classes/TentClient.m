@@ -29,6 +29,16 @@
     return client;
 }
 
+- (instancetype)init {
+    self = [super init];
+
+    if (!self) return nil;
+
+    self.operationQueue = [[NSOperationQueue alloc] init];
+
+    return self;
+}
+
 #pragma mark - Discovery
 
 - (void)performDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
@@ -70,7 +80,7 @@
         success(operation);
     } failure:failure];
     
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 - (void)performGETDiscoveryWithSuccessBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
@@ -93,7 +103,7 @@
         success(operation);
     } failure:failure];
     
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 // TODO: Refactor to use getPost instead
@@ -134,7 +144,7 @@
         success(operation);
     } failure:failure];
 
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 - (TCLink *)parseLinkHeader:(NSString *)linkHeader matchingRel:(NSString *)rel fromURL:(NSURL *)originURL {
@@ -379,7 +389,7 @@
         success(appPost, authCredentialsPost);
     } failure:failure];
 
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 #pragma mark - API Endpoints
@@ -434,7 +444,7 @@
         success(operation, _post);
     } failure:failure];
     
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 - (void)getPostWithEntity:(NSString *)entity postID:(NSString *)postID successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
@@ -484,7 +494,7 @@
         success(operation, _post);
     } failure:failure];
 
-    [operation start];
+    [self.operationQueue addOperation:operation];;
 }
 
 - (void)postsFeedWithParams:(TCParams *)params successBlock:(void (^)(AFHTTPRequestOperation *, TCResponseEnvelope *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
@@ -543,7 +553,7 @@
         success(operation, responseEnvelope);
     } failure:failure];
 
-    [operation start];
+    [self.operationQueue addOperation:operation];
 }
 
 #pragma mark - Authentication
