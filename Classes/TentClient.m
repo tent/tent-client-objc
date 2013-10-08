@@ -497,6 +497,48 @@
     [self.operationQueue addOperation:operation];;
 }
 
+- (void)getAttachmentWithEntity:(NSString *)entity digest:(NSString *)digest successBlock:(void (^)(AFHTTPRequestOperation *, NSData *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+
+    if (!self.metaPost) {
+        return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation) {
+            [self getAttachmentWithEntity:entity digest:digest successBlock:success failureBlock:failure];
+        } failureBlock:failure];
+    }
+
+    NSURL *attachmentURL = [[self.metaPost preferredServer] attachmentURLWithEntity:entity attachmentDigest:digest];
+
+    [self getAttachmentFromURL:attachmentURL successBlock:success failureBlock:failure];
+}
+
+- (void)getAttachmentFromURL:(NSURL *)attachmentURL successBlock:(void (^)(AFHTTPRequestOperation *, NSData *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+    NSURLRequest *request;
+
+    if (![[attachmentURL parameterString] firstIndexOf:@"bewit="]) {
+        // Request does not use bewit authentication
+        // Add authorization header
+
+        request = [self authenticateRequest:[NSURLRequest requestWithURL:attachmentURL]];
+    } else {
+        request = [NSURLRequest requestWithURL:attachmentURL];
+    }
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSError *error;
+        if (!operation.response.statusCode == 200) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        success(operation, operation.responseData);
+    } failure:failure];
+
+    [self.operationQueue addOperation:operation];
+}
+
 - (void)postsFeedWithParams:(TCParams *)params successBlock:(void (^)(AFHTTPRequestOperation *, TCResponseEnvelope *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
     if (!self.metaPost) {
         return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation) {

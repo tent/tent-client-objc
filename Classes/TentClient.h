@@ -90,6 +90,16 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
           successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success
           failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+// attachment
+
+- (void)getAttachmentWithEntity:(NSString *)entity digest:(NSString *)digest
+                   successBlock:(void (^)(AFHTTPRequestOperation *operation, NSData *attachmentBinary))success
+                   failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)getAttachmentFromURL:(NSURL *)attachmentURL
+                successBlock:(void (^)(AFHTTPRequestOperation *operation, NSData *attachmentBinary))success
+                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
 // posts_feed
 
 - (void)postsFeedWithParams:(TCParams *)params
