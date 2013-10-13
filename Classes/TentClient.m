@@ -191,12 +191,14 @@
 
 #pragma mark - OAuth
 
-- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
+- (void)registerApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+    NSLog(@"registerApp: <%@ clientRecievedAt: %@ id: %@>", appPost.class, appPost.clientReceivedAt, appPost.ID);
 
     // Ensure we have the meta post
     if (!self.metaPost) {
         return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation){
-            [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
+            [self registerApp:appPost successBlock:success failureBlock:failure];
         } failureBlock:failure];
     }
 
@@ -223,7 +225,7 @@
 
             [self getPostFromURL:appCredentialsLink.URL successBlock:^(AFHTTPRequestOperation *operation, TCPost *appCredentialsPost) {
                 ((TCAppPost *)post).credentialsPost = (TCCredentialsPost *)appCredentialsPost;
-                [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
+                [self registerApp:(TCAppPost *)post successBlock:success failureBlock:failure];
             } failureBlock:failure];
         } failureBlock:failure];
     }
@@ -240,7 +242,7 @@
                 if  ([[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:404]]) {
                     // App post not found, create it!
                     appPost.ID = nil;
-                    return [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
+                    return [self registerApp:appPost successBlock:success failureBlock:failure];
                 }
 
                 NSError *error;
@@ -274,7 +276,7 @@
             if  ([[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:404]]) {
                 // App post not found, create it!
                 appPost.ID = nil;
-                return [self authenticateWithApp:appPost successBlock:success failureBlock:failure viewController:controller];
+                return [self registerApp:appPost successBlock:success failureBlock:failure];
             }
 
             NSError *error;
@@ -287,48 +289,74 @@
             // Don't loose the credentials
             ((TCAppPost *)post).credentialsPost = appPost.credentialsPost;
 
-            [self authenticateWithApp:(TCAppPost *)post successBlock:success failureBlock:failure viewController:controller];
+            [self registerApp:(TCAppPost *)post successBlock:success failureBlock:failure];
         } failureBlock:failure];
     }
 
-    // Build OAuth redirect URI
-    NSString *state = [self randomStringOfLength:[NSNumber numberWithInteger:32]];
-    NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:appPost.ID state:state];
+    // All set
+    success(appPost, appPost.authCredentialsPost);
+}
 
-    // Open oauthRedirectURI in a UIWebView
-    TCWebViewController *webViewController = [TCWebViewController webViewControllerWithParentController:controller];
+- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *))failure viewController:(UIViewController *)controller {
 
-    [webViewController presentAnimated:YES completion:^{
-        [webViewController loadRequest:[NSURLRequest requestWithURL:oauthRedirectURI] withCompletionBlock:^(NSURLRequest *request) {
-            if ([[request.URL absoluteString] hasPrefix:[appPost.redirectURI absoluteString]]) {
-                [webViewController dismissAnimated:YES completion:^{
-                    NSDictionary *params = [request.URL parseQueryString];
-                    if (![[params objectForKey:@"state"] isEqualToString:state]) {
-                        failure(nil, [NSError errorWithDomain:TCOAuthStateMismatchErrorDomain code:1 userInfo:@{ @"params": params }]);
-                        return;
-                    }
+    [self registerApp:appPost successBlock:^(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost) {
 
-                    if ([params objectForKey:@"error"]) {
-                        if ([[params objectForKey:@"error"] isEqualToString:@"user_abort"]) {
-                            failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
-                        } else {
-                            failure(nil, [NSError errorWithDomain:TCOAuthErrorErrorDomain code:1 userInfo:@{ @"params": params }]);
-                        }
+        // Build OAuth redirect URI
+        NSString *state = [self randomStringOfLength:[NSNumber numberWithInteger:32]];
+        NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:appPost.ID state:state];
 
-                        return;
-                    }
+        // Open oauthRedirectURI in a UIWebView
+        TCWebViewController *webViewController = [TCWebViewController webViewControllerWithParentController:controller];
 
-                    [self exchangeTokenForApp:appPost tokenCode:[params objectForKey:@"code"] successBlock:success failureBlock:failure];
-                }];
-            }
-        } abortBlock:^{
-            failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
+        [webViewController presentAnimated:YES completion:^{
+            [webViewController loadRequest:[NSURLRequest requestWithURL:oauthRedirectURI] withCompletionBlock:^(NSURLRequest *request) {
+                if ([[request.URL absoluteString] hasPrefix:[appPost.redirectURI absoluteString]]) {
+                    [webViewController dismissAnimated:YES completion:^{
+
+                        [self exchangeTokenForApp:appPost callbackURI:request.URL state:state successBlock:success failureBlock:failure];
+
+                    }];
+                }
+            } abortBlock:^{
+                failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
+            }];
         }];
-    }];
 
-    // TODO: Add ability to close webview
+    } failureBlock:failure];
+}
 
-    // TODO: Open link in default browser on desktop
+- (void)authenticateWithApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *appPost, NSURL *, NSString *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+    [self registerApp:appPost successBlock:^(TCAppPost *post, TCCredentialsPost *authCredentialsPost) {
+
+        // Build OAuth redirect URI
+        NSString *state = [self randomStringOfLength:[NSNumber numberWithInteger:32]];
+        NSURL *oauthRedirectURI = [[self.metaPost preferredServer] oauthAuthURLWithAppID:post.ID state:state];
+
+        success(post, oauthRedirectURI, state);
+
+    } failureBlock:failure];
+}
+
+- (void)exchangeTokenForApp:(TCAppPost *)appPost callbackURI:(NSURL *)callbackURI state:(NSString *)state successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+    NSDictionary *params = [callbackURI parseQueryString];
+    if (![[params objectForKey:@"state"] isEqualToString:state]) {
+        failure(nil, [NSError errorWithDomain:TCOAuthStateMismatchErrorDomain code:1 userInfo:@{ @"params": params }]);
+        return;
+    }
+
+    if ([params objectForKey:@"error"]) {
+        if ([[params objectForKey:@"error"] isEqualToString:@"user_abort"]) {
+            failure(nil, [NSError errorWithDomain:TCOAuthUserAbortErrorDomain code:1 userInfo:nil]);
+        } else {
+            failure(nil, [NSError errorWithDomain:TCOAuthErrorErrorDomain code:1 userInfo:@{ @"params": params }]);
+        }
+
+        return;
+    }
+
+    [self exchangeTokenForApp:appPost tokenCode:[params objectForKey:@"code"] successBlock:success failureBlock:failure];
 }
 
 - (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
@@ -389,7 +417,7 @@
         success(appPost, authCredentialsPost);
     } failure:failure];
 
-    [self.operationQueue addOperation:operation];;
+    [self.operationQueue addOperation:operation];
 }
 
 #pragma mark - API Endpoints

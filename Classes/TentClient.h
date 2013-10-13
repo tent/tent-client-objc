@@ -58,7 +58,15 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
 
 /*
  - Performs discovery on entity unless metaPost present
- - Creates app when id absent
+ - Creates app if needed
+ - Calls success or failure block
+ */
+- (void)registerApp:(TCAppPost *)appPost
+       successBlock:(void (^)(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost))success
+       failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/*
+ - Registers app
  - Opens webview for user authentication
  - Performs token exchange when token returned
  - Calls success or failure block
@@ -68,6 +76,33 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
                viewController:(UIViewController *)controller;
 
+/*
+ - Registers app
+ - Calls failure block if app registration fails
+ - Calls success block with URI to open in browser and state for user authentication
+
+ App is expected to use a custom URL scheme for the callback URI
+ and open OAuth URL in the users's default browser.
+ */
+- (void)authenticateWithApp:(TCAppPost *)appPost
+               successBlock:(void (^)(TCAppPost *appPost, NSURL *authURI, NSString *state))success
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/*
+ - Parses token code and state params from callback URI
+ - Verifies state
+ - Performs token exchange
+ - Calls success or failure block
+ */
+- (void)exchangeTokenForApp:(TCAppPost *)appPost callbackURI:(NSURL *)callbackURI
+                      state:(NSString *)state
+               successBlock:(void (^)(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost))success
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/*
+ - Performs token exchange
+ - Calls success or failure block
+ */
 - (void)exchangeTokenForApp:(TCAppPost *)appPost tokenCode:(NSString *)tokenCode
                successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success
                failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
