@@ -192,8 +192,6 @@
 
 - (void)registerApp:(TCAppPost *)appPost successBlock:(void (^)(TCAppPost *, TCCredentialsPost *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
 
-    NSLog(@"registerApp: <%@ clientRecievedAt: %@ id: %@>", appPost.class, appPost.clientReceivedAt, appPost.ID);
-
     // Ensure we have the meta post
     if (!self.metaPost) {
         return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation){
