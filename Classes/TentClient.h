@@ -67,17 +67,6 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
 
 /*
  - Registers app
- - Opens webview for user authentication
- - Performs token exchange when token returned
- - Calls success or failure block
- */
-- (void)authenticateWithApp:(TCAppPost *)appPost
-               successBlock:(void (^)(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost))success
-               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-               viewController:(UIViewController *)controller;
-
-/*
- - Registers app
  - Calls failure block if app registration fails
  - Calls success block with URI to open in browser and state for user authentication
 
@@ -148,5 +137,7 @@ static NSString * const TCInvalidMetaPostLinkErrorDomain = @"Invalid Meta Post L
 #pragma mark - Authentication
 
 - (NSURLRequest *)authenticateRequest:(NSURLRequest *)request;
+
+- (NSString *)randomStringOfLength:(NSNumber *)length;
 
 @end

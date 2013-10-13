@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2298A789B8774A56B8B8639F /* libPods-osx_10_9.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F78DBA41C56D461D96D7D88E /* libPods-osx_10_9.a */; };
+		881EE6ED180B0B7E008D1A08 /* TentClient+UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 881EE6EB180B0B7E008D1A08 /* TentClient+UIKit.h */; };
+		881EE6EE180B0B7E008D1A08 /* TentClient+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 881EE6EC180B0B7E008D1A08 /* TentClient+UIKit.m */; };
+		881EE6EF180B0B7E008D1A08 /* TentClient+UIKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 881EE6EC180B0B7E008D1A08 /* TentClient+UIKit.m */; };
 		8879A36C1801D3B300957A90 /* NSArray+Filtering.h in Headers */ = {isa = PBXBuildFile; fileRef = 8879A3441801D3B300957A90 /* NSArray+Filtering.h */; };
 		8879A36D1801D3B300957A90 /* NSArray+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A3451801D3B300957A90 /* NSArray+Filtering.m */; };
 		8879A36E1801D3B300957A90 /* NSArray+Filtering.m in Sources */ = {isa = PBXBuildFile; fileRef = 8879A3451801D3B300957A90 /* NSArray+Filtering.m */; };
@@ -118,6 +121,8 @@
 /* Begin PBXFileReference section */
 		300098235FBD4970989F5AA5 /* Pods-ios.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios.xcconfig"; path = "../Pods/Pods-ios.xcconfig"; sourceTree = "<group>"; };
 		8584D820A3E84CE397D26A29 /* libPods-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		881EE6EB180B0B7E008D1A08 /* TentClient+UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TentClient+UIKit.h"; sourceTree = "<group>"; };
+		881EE6EC180B0B7E008D1A08 /* TentClient+UIKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TentClient+UIKit.m"; sourceTree = "<group>"; };
 		8879A3441801D3B300957A90 /* NSArray+Filtering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Filtering.h"; sourceTree = "<group>"; };
 		8879A3451801D3B300957A90 /* NSArray+Filtering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Filtering.m"; sourceTree = "<group>"; };
 		8879A3461801D3B300957A90 /* NSDictionary+Filtering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Filtering.h"; sourceTree = "<group>"; };
@@ -228,6 +233,8 @@
 				8879A3E91801EC9A00957A90 /* TCResponseEnvelope.m */,
 				8879A36A1801D3B300957A90 /* TentClient.h */,
 				8879A36B1801D3B300957A90 /* TentClient.m */,
+				881EE6EB180B0B7E008D1A08 /* TentClient+UIKit.h */,
+				881EE6EC180B0B7E008D1A08 /* TentClient+UIKit.m */,
 				8879A34E1801D3B300957A90 /* Models */,
 				8879A3431801D3B300957A90 /* Extensions */,
 			);
@@ -400,6 +407,7 @@
 				8879A3751801D3B300957A90 /* NSString+URLEncode.h in Headers */,
 				8879A3991801D3B300957A90 /* TCPost.h in Headers */,
 				8879A3811801D3B300957A90 /* TCMetaPost+CoreData.h in Headers */,
+				881EE6ED180B0B7E008D1A08 /* TentClient+UIKit.h in Headers */,
 				8879A3961801D3B300957A90 /* TCMetaPostServer.h in Headers */,
 				8879A3721801D3B300957A90 /* NSJSONSerialization+ObjectCleanup.h in Headers */,
 				8879A3781801D3B300957A90 /* NSURL+Extentions.h in Headers */,
@@ -626,6 +634,7 @@
 				8879A37C1801D3B300957A90 /* TCAppPost+CoreData.m in Sources */,
 				8879A3911801D3B300957A90 /* TCCredentialsPost.m in Sources */,
 				8879A3A31801D3B300957A90 /* TentClient.m in Sources */,
+				881EE6EE180B0B7E008D1A08 /* TentClient+UIKit.m in Sources */,
 				8879A3821801D3B300957A90 /* TCMetaPost+CoreData.m in Sources */,
 				8879A3EB1801EC9A00957A90 /* TCResponseEnvelope.m in Sources */,
 				8879A3701801D3B300957A90 /* NSDictionary+Filtering.m in Sources */,
@@ -662,6 +671,7 @@
 				8879A37D1801D3B300957A90 /* TCAppPost+CoreData.m in Sources */,
 				8879A3921801D3B300957A90 /* TCCredentialsPost.m in Sources */,
 				8879A3A41801D3B300957A90 /* TentClient.m in Sources */,
+				881EE6EF180B0B7E008D1A08 /* TentClient+UIKit.m in Sources */,
 				8879A3831801D3B300957A90 /* TCMetaPost+CoreData.m in Sources */,
 				8879A3EC1801EC9A00957A90 /* TCResponseEnvelope.m in Sources */,
 				8879A3711801D3B300957A90 /* NSDictionary+Filtering.m in Sources */,
