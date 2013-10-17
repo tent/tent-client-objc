@@ -392,6 +392,13 @@
 #pragma mark - API Endpoints
 
 - (void)newPost:(TCPost *)post successBlock:(void (^)(AFHTTPRequestOperation *operation, TCPost *post))success failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure {
+
+    if (!self.metaPost) {
+        return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation) {
+            [self newPost:post successBlock:success failureBlock:failure];
+        } failureBlock:failure];
+    }
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[[self.metaPost preferredServer] newPostURL]];
     [request setHTTPMethod: @"POST"];
 
