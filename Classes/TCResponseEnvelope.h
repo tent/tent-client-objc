@@ -52,10 +52,11 @@ static NSString * const TCResponseEnvelopeErrorDomain = @"Response Envelope Erro
     - post
     - mentions
     - versions
-    - refs
  */
 
 - (NSArray *)posts;
+
+- (NSArray *)refs;
 
 - (NSDictionary *)profiles;
 

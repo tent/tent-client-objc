@@ -24,6 +24,7 @@
     NSArray *mentions;
 
     NSArray *deserializedPosts;
+    NSArray *deserializedRefs;
 }
 
 + (instancetype)responseEnvelopeWithJSONDictionary:(NSDictionary *)responseJSON requestURL:(NSURL *)requestURL {
@@ -139,6 +140,24 @@
     }];
 
     return deserializedPosts;
+}
+
+- (NSArray *)refs {
+    if (deserializedRefs) return deserializedRefs;
+
+    deserializedRefs = [refs transposedArrayUsingBlock:^id(NSDictionary *postJSON) {
+        NSError *error;
+
+        TCPost *postModel = [MTLJSONAdapter modelOfClass:TCPost.class fromJSONDictionary:postJSON error:&error];
+
+        if (error) {
+            NSLog(@"Error deserializing ref post: %@", error);
+        }
+
+        return postModel;
+    }];
+
+    return deserializedRefs;
 }
 
 - (NSDictionary *)profiles {
