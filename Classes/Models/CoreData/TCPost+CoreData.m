@@ -52,7 +52,7 @@
 }
 
 + (NSSet *)propertyKeysForManagedObjectUniquing {
-    return [NSSet setWithObject:@"ID"];
+    return [NSSet setWithObjects:@"ID", @"entityURI", nil];
 }
 
 @end
