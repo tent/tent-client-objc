@@ -501,6 +501,42 @@
     [self.operationQueue addOperation:operation];;
 }
 
+- (void)deletePostWithEntity:(NSString *)entity postID:(NSString *)postID successBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+    if (!self.metaPost) {
+        return [self performDiscoveryWithSuccessBlock:^(AFHTTPRequestOperation *operation) {
+            [self deletePostWithEntity:entity postID:postID successBlock:success failureBlock:failure];
+        } failureBlock:failure];
+    }
+
+    NSURL *postURL = [[self.metaPost preferredServer] postURLWithEntity:entity postID:postID];
+
+    [self deletePostWithURL:postURL successBlock:success failureBlock:failure];
+}
+
+- (void)deletePostWithURL:(NSURL *)postURL successBlock:(void (^)(AFHTTPRequestOperation *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:postURL];
+    [request setHTTPMethod: @"DELETE"];
+
+    NSURLRequest *authedRequest = [self authenticateRequest:request];
+
+    AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:authedRequest];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
+        NSError *error;
+        if (!operation.response.statusCode == 200) {
+            error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
+            failure(operation, error);
+            return;
+        }
+
+        success(operation);
+    } failure:failure];
+
+    [self.operationQueue addOperation:operation];;
+}
+
 - (void)getAttachmentWithEntity:(NSString *)entity digest:(NSString *)digest successBlock:(void (^)(AFHTTPRequestOperation *, NSData *))success failureBlock:(void (^)(AFHTTPRequestOperation *, NSError *))failure {
 
 
