@@ -251,6 +251,7 @@
 
                 // Don't loose the credentials
                 ((TCAppPost *)post).credentialsPost = appPost.credentialsPost;
+                ((TCAppPost *)post).authCredentialsPost = appPost.authCredentialsPost;
 
                 return success((TCAppPost *)post, ((TCAppPost *)post).authCredentialsPost);
             } failureBlock:failure];
@@ -285,6 +286,7 @@
 
             // Don't loose the credentials
             ((TCAppPost *)post).credentialsPost = appPost.credentialsPost;
+            ((TCAppPost *)post).authCredentialsPost = appPost.authCredentialsPost;
 
             [self registerApp:(TCAppPost *)post successBlock:success failureBlock:failure];
         } failureBlock:failure];
