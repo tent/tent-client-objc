@@ -116,7 +116,7 @@
     AFHTTPRequestOperation *operation = [self requestOperationWithURLRequest:request];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if (!operation.response.statusCode == 200) {
+        if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
             failure(operation, [[NSError alloc] initWithDomain:TCInvalidResponseCodeErrorDomain code:1 userInfo:nil]);
             return;
         }
@@ -527,7 +527,7 @@
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSError *error;
-        if (!operation.response.statusCode == 200) {
+        if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
             error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
             failure(operation, error);
             return;
@@ -569,7 +569,7 @@
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSError *error;
-        if (!operation.response.statusCode == 200) {
+        if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
             error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
             failure(operation, error);
             return;
@@ -613,7 +613,7 @@
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id __unused responseObject) {
         NSError *error;
-        if (!operation.response.statusCode == 200) {
+        if (![[NSNumber numberWithInteger:operation.response.statusCode] isEqualToNumber:[NSNumber numberWithInteger:200]]) {
             error = [NSError errorWithDomain:TCInvalidResponseCodeErrorDomain code:operation.response.statusCode userInfo:@{ @"operation": operation }];
             failure(operation, error);
             return;
