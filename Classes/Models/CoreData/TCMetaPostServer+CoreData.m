@@ -32,6 +32,10 @@
              };
 }
 
++ (NSSet *)propertyKeysForManagedObjectUniquing {
+    return [NSSet setWithArray:[[self managedObjectKeysByPropertyKey] allKeys]];
+}
+
 @end
 
 @implementation TCMetaPostServerManagedObject
