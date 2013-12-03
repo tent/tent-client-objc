@@ -11,7 +11,6 @@
 
 @interface TentClient (UIKit)
 
-
 /*
  - Registers app
  - Opens webview for user authentication
@@ -19,8 +18,11 @@
  - Calls success or failure block
  */
 - (void)authenticateWithApp:(TCAppPost *)appPost
-               successBlock:(void (^)(TCAppPost *appPost, TCCredentialsPost *authCredentialsPost))success
-               failureBlock:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+               successBlock:
+                   (void (^)(TCAppPost *appPost,
+                             TCCredentialsPost *authCredentialsPost))success
+               failureBlock:(void (^)(AFHTTPRequestOperation *operation,
+                                      NSError *error))failure
              viewController:(UIViewController *)controller;
 
 @end
