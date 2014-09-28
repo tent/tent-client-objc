@@ -7,7 +7,7 @@
 //
 
 #import "TentClient.h"
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface TentClient (UIKit)
 

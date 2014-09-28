@@ -8,7 +8,7 @@
 // in the LICENSE file.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface TCWebViewController : UIViewController<UIWebViewDelegate>
 

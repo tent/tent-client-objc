@@ -8,7 +8,7 @@
 // in the LICENSE file.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface NSDictionary (Filtering)
 
