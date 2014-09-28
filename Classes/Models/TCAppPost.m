@@ -30,8 +30,8 @@
                                          @"readTypes": @"content.types.read",
                                          @"writeTypes": @"content.types.write",
                                          @"scopes": @"content.scopes",
-                                         @"credentials": NSNull.null,
-                                         @"authCredentials": NSNull.null
+                                         @"credentialsPost": NSNull.null,
+                                         @"authCredentialsPost": NSNull.null
                                          }];
     
     return [NSDictionary dictionaryWithDictionary:mapping];
