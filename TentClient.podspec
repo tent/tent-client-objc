@@ -12,10 +12,11 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
 
   s.source_files = 'Classes/**/*.{h,m}'
+  s.osx.exclude_files = ['Classes/TentClient+UIKit.{h,m}', 'Classes/TCWebViewController.{h,m}']
 
   s.preserve_paths = 'Resources', 'Support'
 
   s.dependency 'Hawk'
-  s.dependency 'AFNetworking', '2.0.0'
-  s.dependency 'Mantle', '1.3'
+  s.dependency 'AFNetworking', '~> 2.0'
+  s.dependency 'Mantle', '~> 1.3'
 end
