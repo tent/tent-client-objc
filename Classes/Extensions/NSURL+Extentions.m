@@ -32,7 +32,7 @@
     NSString *urlStr = [self absoluteString];
     NSString *host = [self host];
 
-    NSNumber *hostIndex = [NSNumber numberWithInteger:[urlStr firstIndexOf:host]];
+    NSNumber *hostIndex = [NSNumber numberWithUnsignedInteger:*[urlStr firstIndexOf:host]];
 
     NSNumber *pathIndex = [NSNumber numberWithInteger:([hostIndex integerValue] + [host length])];
 
